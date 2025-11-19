@@ -1,0 +1,131 @@
+
+body {
+  background: #0e0f13 url("/FONDO.png") center/cover fixed no-repeat;
+}
+
+/* Contenedor principal */
+.detalle-content {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* Tarjeta glass */
+.detalle-card {
+  width: min(1100px, 95%);
+  background: rgba(30, 20, 10, 0.45);
+  border: 1px solid rgba(212, 169, 77, 0.3);
+  border-radius: 20px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  padding: 2rem;
+  color: #f1e9d6;
+}
+
+/* Título */
+.highlight-title {
+  background: linear-gradient(180deg, #f6d47a, #e9b75e);
+  color: #2d1b09;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  display: inline-block;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+/* Layout del cuerpo */
+.detalle-body {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Lado izquierdo */
+.detalle-left {
+  flex: 1;
+  text-align: center;
+}
+
+.detalle-left img {
+  width: 300px;
+  border-radius: 14px;
+  border: 2px solid #d4a94d;
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.45);
+}
+
+.rating {
+  margin: 1rem 0;
+}
+.rating i {
+  color: #d4a94d;
+  margin: 0 0.2rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.btn {
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.btn.reserve {
+  background-color: #d4a94d;
+  color: #2d1b09;
+}
+.btn.fav,
+.btn.share {
+  background-color: #efe1bf;
+  color: #3a2a18;
+}
+
+/* Lado derecho */
+.detalle-right {
+  flex: 2;
+}
+.info,
+.description {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(212, 169, 77, 0.2);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+strong {
+  color: #f6d47a;
+}
+.tags {
+  display: flex;
+  gap: 0.8rem;
+}
+.tag {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid #d4a94d;
+  color: #d4a94d;
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 25px;
+  left: 130px;
+  background: #fff;
+  color: #1b1b1b;
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.toast.hidden {
+  display: none;
+}

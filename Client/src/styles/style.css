@@ -1,0 +1,117 @@
+:root{
+  --bg:#0d0f12;
+  --panel:#151922;
+  --panel-2:#1b2030;
+  --stroke:#2a3042;
+  --text:#f1f3f7;
+  --muted:#aab1c1;
+  --accent:#ffffff;
+  --danger:#c0392b;
+  --shadow:0 16px 30px rgba(0,0,0,.35);
+  --radius:22px;
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+html, body { overflow-x: hidden; }
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, sans-serif;
+  color:var(--text);
+  background:#0e0f13;
+}
+
+/* ---------- Layout general ---------- */
+.app{ display:flex; min-height:100dvh; }
+.content{ flex:1; position:relative; padding:18px 18px 28px 18px; }
+
+/* ---------- Sidebar ---------- */
+.sidebar{
+  width:100px;
+  background:linear-gradient(180deg, rgba(11,12,15,.92), rgba(6,7,9,.88));
+  backdrop-filter: blur(4px);
+  border-right:1px solid rgba(255,255,255,.06);
+  display:flex; flex-direction:column; align-items:center;
+  gap:20px; padding:20px 10px;
+  position:sticky; top:0; height:100dvh;
+}
+.brand img{ width:70px; height:70px; object-fit:contain; display:block; filter:none; }
+
+.side-actions{ display:flex; flex-direction:column; align-items:center; gap:16px; margin-top:80px; }
+.side-btn{
+  position:relative;
+  width:55px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:8px;
+  padding:10px 0 9px;
+  border-radius:20px;
+  background:transparent;
+  border:1px solid #eaeaea9b;
+  color:#e5e5e5; text-decoration:none;
+  transition:transform .15s ease, background .2s ease, color .2s ease;
+  box-shadow: inset 0 -6px 10px rgba(0,0,0,.25);
+}
+.side-btn:hover{ transform:translateY(-2px); background:rgba(0,0,0,.5); }
+.side-btn i{ font-size:22px; color:var(--accent); }
+
+/* badge cuando ponga el back */
+.side-actions .side-btn[data-badge]:not([data-badge="0"])::after{
+  content: attr(data-badge);
+  position:absolute; top:6px; right:10px;
+  background:#ec3f3f; color:#fff; font-weight:800; font-size:11px;
+  padding:2px 6px; border-radius:10px; border:1px solid rgba(0,0,0,.35);
+  box-shadow:0 2px 6px rgba(0,0,0,.35);
+}
+
+.side-tools{ margin-top:auto; display:flex; flex-direction:column; gap:12px; align-items:center; }
+.tool{
+  width:70px; height:auto; border-radius:18px;
+  border:1px solid rgba(157,12,12,.1);
+  background:rgba(0,0,0,.35); color:#eaeaea; cursor:pointer;
+  padding:10px 6px 8px;
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+  box-shadow: inset 0 -6px 10px rgba(0,0,0,.25);
+  transition: transform .2s ease, background .2s ease;
+}
+.tool:hover{ transform:translateY(-2px); background:rgba(0,0,0,.55); }
+.tool i{ font-size:18px; color:var(--accent); }
+.side-tools .tool:nth-child(1)::after{ content:"Cuenta";  font-size:11px; color:#e8e8e8; }
+.side-tools .tool:nth-child(2)::after{ content:"Ajustes"; font-size:11px; color:#e8e8e8; }
+.side-tools .tool:nth-child(3)::after{ content:"Salir";   font-size:11px; color:#e8e8e8; }
+.side-tools .tool:nth-child(3) i{ color:#ff756d; }
+
+/* ---------- Banner Buscar ---------- */
+.hero{ display:flex; justify-content:center; margin-top:0; }
+.buscar-logo{
+  max-width:300px; width:92%; height:auto; display:block; margin-inline:auto;
+  border-radius:18px;
+  filter: drop-shadow(0 16px 30px rgba(0,0,0,.35));
+  border:1px solid rgba(255,255,255,0); /* elimina borde blanco */
+}
+
+/* ---------- Buscador ---------- */
+.search-wrap{ display:flex; justify-content:center; margin:10px   6px; }
+.search{
+  width:min(1080px, 92%);
+  display:flex; align-items:center; gap:12px;
+  background:rgba(255,255,255,.9); color:#222;
+  border-radius:2500px; padding:8px 16px; border:1px solid rgba(0,0,0,.2);
+  box-shadow:0 14px 24px rgba(0,0,0,.25);
+}
+.search .prefix{ color:#444; margin-left:4px; font-size:18px; }
+.search input{ flex:1; border:0; outline:0; background:transparent; font-size:18px; color:#222; }
+.search .suffix{
+  width:36px; height:36px; border-radius:999px; border:0; background:#111; color:#fff; cursor:pointer;
+  display:inline-flex; align-items:center; justify-content:center;
+}
+
+
+/* ---------- Responsive ---------- */
+@media (max-width:980px){ .card{ flex-basis:210px; } }
+@media (max-width:680px){
+  .sidebar{ width:76px; }
+  .card{ flex-basis:70%; }
+  .search{ width:95%; }
+}
+
+/* me toca optimizar este css y pasarlo al home.css */

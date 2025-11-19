@@ -3,3 +3,5 @@ Client/dist
 
 Server/node_modules
 Server/dist
+
+git config core.autocrlf input
