@@ -14,7 +14,7 @@ body {
   min-height: 100dvh; 
   display: grid;
   place-items: center;
-  padding: 18px;
+  padding:2px;
 
   background-image: url("/FONDO.png");
   background-size: cover;
@@ -24,19 +24,21 @@ body {
 
 /* Contenedor del logo + card */
 .login-inner {
-  width: min(860px, 98%);
+  width: min(960px, 98%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 15px;          /* antes 64px */
+  margin-top: -40px;  /* sube todo sin romper el centrado */
 }
+
 
 /* logo */
 .login-brand {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 2px;
   filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.35));
   user-select: none;
 }

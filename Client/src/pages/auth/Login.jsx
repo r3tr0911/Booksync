@@ -36,20 +36,35 @@ function Login (){
 
                         <div className="form-row">
                             <label className="label" htmlFor="email">
-                                correo
+                                Correo
                             </label>
                             <div className="field">
-                                <input id="email" type="email" placeholder="Escriba su correo" required value={email} onChange={(e) => setEmail(e.target.value)}/>
+                                <input 
+                                    id="email" 
+                                    type="email" 
+                                    placeholder="Escriba su correo" 
+                                    required value={email} onChange={(e) => setEmail(e.target.value)}
+                                />
                             </div>
                         </div>
 
                         <div className="form-row">
                             <label className="label" htmlFor="password">
-                                Contraseña
+                                Contraseña    
                             </label>
                             <div className="field">
-                                <input id="password" type={showPw ? "text" : "password"} placeholder="Escriba su contraseña" required minLength={6} value={password} onChange={(e) => setPassword(e.target.value)} />
-                                <button type="button" className="toggle" aria-label="Mostrar contraseña" onClick={() => setShowPw((prev) => !prev)}>
+                                <input 
+                                    id="password" 
+                                    type={showPw ? "text" : "password"} 
+                                    placeholder="Escriba su contraseña" 
+                                    required minLength={6} 
+                                    value={password} onChange={(e) => setPassword(e.target.value)}
+                                />
+                                <button 
+                                    type="button" 
+                                    className="toggle" 
+                                    aria-label="Mostrar contraseña" 
+                                    onClick={() => setShowPw((prev) => !prev)}>
                                     <i id="pw-icon" className={showPw? "fa-solid fa-eye-slash" : "fa-solid fa-eye"}/>
                                 </button>
                             </div>
