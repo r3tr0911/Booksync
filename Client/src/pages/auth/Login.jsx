@@ -1,5 +1,7 @@
 import{useState} from "react";
 import{useNavigate} from "react-router-dom";    
+// import "../../styles/login.css";
+
 
 function Login (){
     const [email, setEmail] = useState("");
@@ -20,8 +22,9 @@ function Login (){
     };
 
     return(
-        <main className="login-wrap">
+        <main className="login-wrap ">
             <div className="login-inner">
+                
                 <div className="login-brand">
                     <img src="BOOKSYNC LOGO 2.png" alt="Logo BOOKSYNC" />
                 </div>

@@ -1,12 +1,20 @@
 /* ====== Registro (BookSync) ====== */
-.login-wrap{
+
+.register-page html, body { 
+  height:100%;
+  overflow-x: hidden;
+  overflow-y: auto
+ }
+
+
+.register-page .login-wrap{
     min-height:100dvh;
     display:grid; 
     place-items:center;
     padding:18px;
   }
   
-  .login-inner{
+  .register-page .login-inner{
     width:min(860px, 98%);
     display:flex; 
     flex-direction:column; 
@@ -15,7 +23,7 @@
   }
   
 
-  .login-brand{ 
+  .register-page .login-brand{ 
     display:flex; 
     flex-direction:column; 
     align-items:center; 
@@ -23,14 +31,14 @@
     filter:drop-shadow(0 10px 24px rgba(0,0,0,.35)); 
     user-select:none; 
   }
-  .login-brand img{ 
+  .register-page .login-brand img{ 
     width:min(300px, 58vw); 
     height:auto; 
     object-fit:contain; 
   }
   
  
-  .login-card{
+  .register-page .login-card{
     width:min(520px, 96%);
     background:rgba(231,210,164,.86);
     border:1px solid rgba(80,60,20,.28);
@@ -42,7 +50,7 @@
     backdrop-filter:blur(2px);
   }
   
-  .login-card .avatar{
+  .register-page .login-card .avatar{
     width:48px; height:48px; border-radius:999px;
     background:#31111D; color:#f3e6c5;
     display:grid; place-items:center;
@@ -53,20 +61,20 @@
   }
   
 
-  .login-card .form-row{ 
+  .register-page .login-card .form-row{ 
     display:flex; 
     flex-direction:column; 
     gap:6px; 
     margin:12px 0; 
   }
-  .login-card label{ 
+  .register-page .login-card label{ 
     font-size:13px; 
     color:#0d0f12; 
   }
   
-  .login-card input[type="text"],
-  .login-card input[type="email"],
-  .login-card input[type="password"]{
+  .register-page .login-card input[type="text"],
+  .register-page .login-card input[type="email"],
+  .register-page .login-card input[type="password"]{
     width:100%;
     background:#f7eacc;
     border:1px solid rgba(60,45,20,.35);
@@ -76,22 +84,22 @@
     font-size:15px;
     outline:none;
   }
-  .login-card input::placeholder{ color:#7b6a4f; opacity:.9; }
-  .login-card input:focus{
+  .register-page .login-card input::placeholder{ color:#7b6a4f; opacity:.9; }
+  .register-page .login-card input:focus{
     box-shadow:0 0 0 2px rgba(255,228,166,.35);
   }
   
-  .id-section .id-group{
+  .register-page .id-section .id-group{
     display:flex;
     align-items:center;
     gap:12px;
   }
   
-  .id-section .id-group > input[type="text"]{
+  .register-page .id-section .id-group > input[type="text"]{
     flex:1;
   }
   
-  .id-section .id-type{
+  .register-page .id-section .id-type{
     display:flex;
     align-items:center;
     gap:18px;
@@ -102,28 +110,28 @@
     padding:10px 14px;
     box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
   }
-  .id-section .id-type label{
+  .register-page .id-section .id-type label{
     display:flex;
     align-items:center;
     gap:6px;
     font-size:14px;
     color:#2c2a26;
   }
-  .id-section .id-type input[type="radio"]{
+  .register-page .id-section .id-type input[type="radio"]{
     accent-color:#7a3a2e;
   }
   
   @media (max-width:520px){
-    .id-section .id-group{ 
+    .register-page .id-section .id-group{ 
       flex-direction:column; 
       align-items:stretch; 
     }
-    .id-section .id-type{ 
+    .register-page .id-section .id-type{ 
       justify-content:space-evenly; 
     }
   }
   
-  .form-row .field{
+  .register-page .form-row .field{
     position:relative;
     background:#f7eacc;
     border:1px solid rgba(60,45,20,.35);
@@ -132,7 +140,7 @@
     display:flex; 
     align-items:center;
   }
-  .form-row .field input[type="date"]{
+  .register-page .form-row .field input[type="date"]{
     flex:1;
     border:0; 
     background:transparent; 
@@ -142,7 +150,7 @@
     padding-right:38px;              
   }
   
-  .form-row .field i.fa-calendar{
+  .register-page .form-row .field i.fa-calendar{
     position:absolute;
     right:12px;
     top:50%;
@@ -153,7 +161,7 @@
     font-size:16px;
   }
   
-  .form-row .field input[type="date"]::-webkit-calendar-picker-indicator{
+  .register-page .form-row .field input[type="date"]::-webkit-calendar-picker-indicator{
     cursor:pointer;
     opacity:0;
     position:absolute;
@@ -162,7 +170,7 @@
     height:28px;
   }
   
-  .btn-login{
+  .register-page .btn-login{
     width:60%;
     display:block;
     margin:14px auto 0;
@@ -176,20 +184,47 @@
     box-shadow:0 8px 16px rgba(0,0,0,.35);
   }
   
-  .login-card .links{ 
+  .register-page .login-card .links{ 
     margin-top:12px; 
     display:flex; 
     align-items:center; 
     justify-content:space-between; 
     font-size:13px; 
   }
-  .login-card .links a{ 
+  .register-page .login-card .links a{ 
     color:#3b2d18; 
     text-decoration:none; 
   }
-  .login-card .links a:hover{ text-decoration:underline; }
+  .register-page .login-card .links a:hover{ text-decoration:underline; }
   
   @media (max-width:420px){
-    .btn-login{ width:100%; }
+    .register-page .btn-login{ width:100%; }
   }
   
+
+  .register-page .form-row .field input[type="password"] {
+    flex: 1;
+    border: 0;
+    background: transparent;
+    padding: 10px 0;
+    font-size: 15px;
+    color: #1b1714;
+    padding-right: 38px;   
+    border-radius: 0;     
+  }
+  
+  
+  .register-page .form-row .field button.toggle {
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 8px;
+  }
+  
+  .register-page .form-row .field button.toggle i {
+    font-size: 16px;
+    color: #3d352c;
+  }

@@ -1,6 +1,6 @@
 html,
 body {
-  height: 100%;
+  /* height: 100%; */
   overflow: hidden; 
 }
 
@@ -28,17 +28,15 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;          /* antes 64px */
-  margin-top: -40px;  /* sube todo sin romper el centrado */
+  gap: 0px;
 }
-
 
 /* logo */
 .login-brand {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  /* gap: 2px; */
   filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.35));
   user-select: none;
 }
