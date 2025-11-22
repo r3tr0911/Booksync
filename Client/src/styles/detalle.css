@@ -1,19 +1,31 @@
+/* ===== Página de Detalle ===== */
+.detalle-page {
+  display: flex;                 
+  min-height: 100vh;
+  width: 100%;
+  background: url("/FONDO.png") center/cover no-repeat fixed;
+  }
 
-body {
-  background: #0e0f13 url("/FONDO.png") center/cover fixed no-repeat;
+.detalle-page .brand {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
 }
 
-/* Contenedor principal */
-.detalle-content {
+/* Contenedor principal  */
+.detalle-page .detalle-content {
+  flex: 1;
   display: flex;
   justify-content: center;
   padding: 2rem;
 }
 
-/* Tarjeta glass */
-.detalle-card {
+/* glass */
+.detalle-page .detalle-card {
   width: min(1100px, 95%);
-  background: rgba(30, 20, 10, 0.45);
+  background: rgba(0,0,0,.25);
   border: 1px solid rgba(212, 169, 77, 0.3);
   border-radius: 20px;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
@@ -23,7 +35,7 @@ body {
 }
 
 /* Título */
-.highlight-title {
+.detalle-page .highlight-title {
   background: linear-gradient(180deg, #f6d47a, #e9b75e);
   color: #2d1b09;
   padding: 0.6rem 1.2rem;
@@ -34,76 +46,88 @@ body {
 }
 
 /* Layout del cuerpo */
-.detalle-body {
+.detalle-page .detalle-body {
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
 }
 
 /* Lado izquierdo */
-.detalle-left {
+.detalle-page .detalle-left {
   flex: 1;
   text-align: center;
 }
 
-.detalle-left img {
+.detalle-page .detalle-left img {
   width: 300px;
   border-radius: 14px;
   border: 2px solid #d4a94d;
   box-shadow: 0 14px 26px rgba(0, 0, 0, 0.45);
 }
 
-.rating {
+/* Estrellas */
+.detalle-page .rating {
   margin: 1rem 0;
 }
-.rating i {
+.detalle-page .rating i {
   color: #d4a94d;
   margin: 0 0.2rem;
 }
 
-.buttons {
+/* Botones principales */
+.detalle-page .buttons {
   display: flex;
   justify-content: center;
   gap: 0.8rem;
+  flex-wrap: wrap;
 }
 
-.btn {
+.detalle-page .btn {
   border: none;
   padding: 0.6rem 1rem;
   border-radius: 10px;
   font-weight: 500;
   cursor: pointer;
 }
-.btn.reserve {
+
+.detalle-page .btn.reserve {
   background-color: #d4a94d;
   color: #2d1b09;
 }
-.btn.fav,
-.btn.share {
+
+.detalle-page .btn.fav,
+.detalle-page .btn.share {
   background-color: #efe1bf;
   color: #3a2a18;
 }
 
 /* Lado derecho */
-.detalle-right {
+.detalle-page .detalle-right {
   flex: 2;
 }
-.info,
-.description {
+
+/* Paneles de info y descripción */
+.detalle-page .info,
+.detalle-page .description {
   background: rgba(0, 0, 0, 0.35);
   border: 1px solid rgba(212, 169, 77, 0.2);
   border-radius: 12px;
   padding: 1rem;
   margin-bottom: 1rem;
 }
-strong {
+
+.detalle-page strong {
   color: #f6d47a;
 }
-.tags {
+
+/* Tags */
+.detalle-page .tags {
   display: flex;
   gap: 0.8rem;
+  flex-wrap: wrap;
 }
-.tag {
+
+.detalle-page .tag {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid #d4a94d;
   color: #d4a94d;
@@ -112,12 +136,12 @@ strong {
   font-size: 0.85rem;
 }
 
-/* Toast */
-.toast {
+/* Toast de reserva */
+.detalle-page .reserve-toast {
   position: fixed;
   bottom: 25px;
   left: 130px;
-  background: #fff;
+  background: #ffffff;
   color: #1b1b1b;
   padding: 1rem 1.2rem;
   border-radius: 12px;
@@ -125,7 +149,63 @@ strong {
   align-items: center;
   gap: 0.8rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 3000;
 }
-.toast.hidden {
+
+.detalle-page .reserve-toast.hidden {
   display: none;
 }
+
+.detalle-page .reserve-toast .toast-content {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.detalle-page .reserve-toast i.fa-circle-check {
+  color: #37b24d;
+  font-size: 1.2rem;
+}
+
+.detalle-page .reserve-toast .toast-title {
+  font-weight: 700;
+  margin: 0;
+}
+
+.detalle-page .reserve-toast .toast-msg {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.detalle-page .reserve-toast button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .detalle-page .detalle-card {
+    padding: 1.5rem;
+  }
+  .detalle-page .detalle-left img {
+    width: 240px;
+  }
+}
+
+@media (max-width: 720px) {
+  .detalle-page .detalle-content {
+    padding: 1.5rem 1rem;
+  }
+  .detalle-page .detalle-left img {
+    width: 220px;
+  }
+  .detalle-page .reserve-toast {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+
