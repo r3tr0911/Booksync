@@ -234,19 +234,31 @@ function Register() {
             </div>
 
             <div className="form-row">
-              <label htmlFor="passwordConfirmed">
-                Confirme su contraseña
-              </label>
-              <input
-                type="password"
-                id="passwordConfirmed"
-                name="passwordConfirmed"
-                placeholder="Confirme su contraseña"
-                value={form.passwordConfirmed}
-                onChange={handleChange}
-                minLength={6}
-                required
-              />
+                <label htmlFor="passwordConfirmed">Confirme su contraseña</label>
+              <div className="field">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="passwordConfirmed"
+                  name="passwordConfirmed"
+                  placeholder="Confirme su contraseña"
+                  value={form.passwordConfirmed}
+                  onChange={handleChange}
+                  minLength={6}
+                  required
+                />
+                <button
+                  type="button"
+                  className="toggle"
+                  aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+                  onClick={togglePassword}
+                >
+                <i
+                  className={
+                  showPassword ? "fa-solid fa-eye-slash" : "fa-solid fa-eye"
+                  }
+                />
+                </button>
+              </div>
             </div>
 
             <button type="submit" className="btn-login">
@@ -255,7 +267,7 @@ function Register() {
 
             <div className="links">
               <Link to="/">¿Ya tienes cuenta?</Link>
-              <a href="#">¿Necesitas ayuda?</a>
+              <Link to="/help">¿Necesitas ayuda?</Link>
             </div>
           </form>
         </section>

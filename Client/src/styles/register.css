@@ -3,8 +3,9 @@
 .register-page html, body { 
   height:100%;
   overflow-x: hidden;
-  overflow-y: auto
+  overflow-y: auto;
  }
+
 
 
 .register-page .login-wrap{
@@ -228,3 +229,11 @@
     font-size: 16px;
     color: #3d352c;
   }
+/* Ocultar el ojo nativo de Edge */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none !important;
+}
+input[type="password"] {
+  background-image: none !important;
+}

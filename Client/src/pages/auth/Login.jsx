@@ -1,6 +1,6 @@
 import{useState} from "react";
 import{useNavigate} from "react-router-dom";    
-// import "../../styles/login.css";
+import { Link } from "react-router-dom";
 
 
 function Login (){
@@ -88,9 +88,9 @@ function Login (){
                         </div>
 
                         <div className="links">
-                            <a href="#">¿Olvidaste tu contraseña?</a>
-                            <a href="#">¿Necesitas ayuda?</a>
-                            <a href="/register">¿No tienes cuenta?</a>
+                            <Link to="#">¿Olvidaste tu contraseña?</Link>
+                            <Link to="/help">¿Necesitas ayuda?</Link>
+                            <Link to="/register">¿No tienes cuenta?</Link>
                         </div>
                         
                     </form>

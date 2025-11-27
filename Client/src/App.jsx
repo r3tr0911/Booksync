@@ -3,6 +3,7 @@ import Login from "./pages/auth/Login.jsx";
 import Register from "./pages/auth/Register.jsx";
 import Home from "./pages/dashboard/Home.jsx";
 import Detalle from "./pages/dashboard/Detalle.jsx";
+import Help from "./pages/auth/Help.jsx";
 
 
 function App() {
@@ -11,8 +12,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Login/>} />
         <Route path="/Register" element={<Register/>} />
+        <Route path="/Help" element={<Help />} />
         <Route path="/Home" element={<Home/>} />
         <Route path="/detalle/:id" element={<Detalle />} />
+        
       </Routes>
     </BrowserRouter>
   );

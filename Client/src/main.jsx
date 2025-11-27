@@ -7,6 +7,8 @@ import "./styles/login.css";
 import "./styles/register.css";
 import "./styles/home.css";
 import "./styles/detalle.css";
+import "./styles/help.css";
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

@@ -1,0 +1,130 @@
+/* ====== Página de ayuda (BookSync) ====== */
+.help-page {
+    padding-top: 40px; /* Puedes subir o bajar este valor */
+    padding-bottom: 40px; /* opcional */
+  }
+  
+.help-page .login-inner {
+    width: min(960px, 98%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    gap: 16px;
+}
+
+.help-page .login-card.help-card {
+    width: 100%;
+    max-width: 960px;
+    padding-bottom: 20px;
+    
+}
+
+.help-page .help-header {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.help-page .help-header h1 {
+    font-size: 1.5rem;
+    margin-bottom: 6px;
+}
+
+.help-page .help-header p {
+    font-size: 0.95rem;
+    color: #4a3b26;
+}
+
+  /* Layout interno */
+
+.help-page .help-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
+    gap: 18px;
+    margin-top: 18px;
+}
+
+.help-page .help-quick,
+.help-page .help-form {
+    background: rgba(255, 248, 230, 0.55);
+    border-radius: 12px;
+    padding: 14px 16px;
+    border: 1px solid rgba(100, 80, 40, 0.2);
+}
+
+  /* Columna izquierda */
+
+.help-page .help-quick h2,
+.help-page .help-form h2 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.help-page .help-quick ul {
+    list-style: disc;
+    padding-left: 18px;
+    font-size: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.help-page .help-quick .tag {
+    font-weight: 600;
+}
+
+  /* Formulario */
+
+.help-page .help-form .form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 10px 0;
+}
+
+.help-page .help-form label {
+    font-size: 0.9rem;
+}
+
+.help-page .help-form select,
+.help-page .help-form textarea {
+    background: #f7eacc;
+    border: 1px solid rgba(60, 45, 20, 0.35);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 0.92rem;
+    resize: vertical;
+}
+
+.help-page .help-form textarea::placeholder {
+    color: #7b6a4f;
+}
+
+.help-page .help-form .checkbox-row label {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    font-size: 0.85rem;
+}
+
+.help-page .help-form .checkbox-row input {
+    margin-top: 2px;
+}
+
+.help-page .help-footer {
+    margin-top: 14px;
+    text-align: center;
+}
+
+.help-page .help-footer .link {
+    font-size: 0.9rem;
+    color: #3b2d18;
+    text-decoration: none;
+}
+
+  /* Responsive */
+
+@media (max-width: 768px) {
+    .help-page .help-grid {
+    grid-template-columns: 1fr;
+    }
+}

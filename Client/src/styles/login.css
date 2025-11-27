@@ -197,3 +197,14 @@ body {
   color: #7b6a4f;
   opacity: 0.9;
 }
+
+
+/* Ocultar el ojo nativo de Edge */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none !important;
+}
+
+input[type="password"] {
+  background-image: none !important;
+}
