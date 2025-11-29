@@ -88,7 +88,7 @@ function Login (){
                         </div>
 
                         <div className="links">
-                            <Link to="#">¿Olvidaste tu contraseña?</Link>
+                            <Link to="/Forgot">¿Olvidaste tu contraseña?</Link>
                             <Link to="/help">¿Necesitas ayuda?</Link>
                             <Link to="/register">¿No tienes cuenta?</Link>
                         </div>

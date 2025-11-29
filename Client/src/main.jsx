@@ -8,6 +8,8 @@ import "./styles/register.css";
 import "./styles/home.css";
 import "./styles/detalle.css";
 import "./styles/help.css";
+import "./styles/forgotEmailSent.css";
+import "./styles/resetPassword.css";
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(

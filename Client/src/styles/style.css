@@ -1,3 +1,4 @@
+
 :root{
   --bg:#0d0f12;
   --panel:#151922;
@@ -10,6 +11,7 @@
   --shadow:0 16px 30px rgba(0,0,0,.35);
   --radius:22px;
 }
+
 
 *{ box-sizing:border-box; }
 html,body{ height:100%; }
