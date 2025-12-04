@@ -6,6 +6,7 @@ import Detalle from "./pages/dashboard/Detalle.jsx";
 import Help from "./pages/auth/Help.jsx";
 import Forgot from "./pages/auth/ForgotEmailSent.jsx";
 import Reset from "./pages/auth/ResetPassword.jsx";
+import ReservasUsuario from "./pages/dashboard/ReservasUsuario.jsx";
 
 
 
@@ -20,7 +21,7 @@ function App() {
         <Route path="/Reset" element={<Reset />} />
         <Route path="/Home" element={<Home/>} />
         <Route path="/detalle/:id" element={<Detalle />} />
-        
+        <Route path="/reservas" element={<ReservasUsuario />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,5 +1,8 @@
 import { useEffect, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link} from "react-router-dom";
+import Sidebar from "../../components/sidebar";
+
+
 
 const FEATURED_BOOKS = [
   {
@@ -119,44 +122,7 @@ function Home() {
   return (
     <div className="home-page">
       {/* ===== Sidebar ===== */}
-      <aside className="sidebar">
-        <a className="brand" href="/Home" aria-label="Inicio">
-          <img src="/BOOKSYNC LOGO 2.png" alt="BookSync" />
-        </a>
-
-        <nav className="side-actions">
-          <button className="side-btn" title="Mis Favoritos">
-            <i className="fa-solid fa-heart" />
-            <small></small>
-          </button>
-          <button className="side-btn" title="Mis reservas">
-            <i className="fa-solid fa-bookmark" />
-            <small></small>
-          </button>
-          <button className="side-btn" title="Mis préstamos">
-            <i className="fa-solid fa-cart-shopping" />
-            <small></small>
-          </button>
-        </nav>
-
-        <div className="side-tools">
-          <button className="tool" title="Cuenta">
-            <i className="fa-regular fa-user" />
-          </button>
-          <button className="tool" title="Ajustes">
-            <i className="fa-solid fa-gear" />
-          </button>
-          <button
-            id="btn-logout"
-            className="tool"
-            title="Salir"
-            type="button"
-            onClick={handleLogoutClick}
-          >
-            <i className="fa-solid fa-right-from-bracket" />
-          </button>
-        </div>
-      </aside>
+      <Sidebar onLogout={handleLogoutClick}/>
 
       {/* ===== Contenido ===== */}
       <main className="content">

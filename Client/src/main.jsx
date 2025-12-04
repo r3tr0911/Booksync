@@ -10,6 +10,8 @@ import "./styles/detalle.css";
 import "./styles/help.css";
 import "./styles/forgotEmailSent.css";
 import "./styles/resetPassword.css";
+import "./styles/reservas.css";
+
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
