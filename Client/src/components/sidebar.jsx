@@ -15,7 +15,7 @@ function Sidebar({ onLogout }) {
 
   return (
     <aside className="sidebar">
-      <Link className="brand" to="/home" aria-label="Inicio">
+      <Link className="brand" to="/Home" aria-label="Inicio">
         <img src="/BOOKSYNC LOGO 2.png" alt="BookSync" />
       </Link>
 
@@ -25,15 +25,15 @@ function Sidebar({ onLogout }) {
           <small></small>
         </button>
 
-        <Link className="side-btn" title="Reservas" to="/reservas">
+        <Link className="side-btn" title="Reservas" to="/Reservas">
           <i className="fa-solid fa-bookmark" />
           <small></small>
         </Link>
 
-        <button className="side-btn" title="Préstamos">
+        <Link className="side-btn" title="Préstamos" to="/Prestamos">
           <i className="fa-solid fa-cart-shopping" />
           <small></small>
-        </button>
+        </Link>
       </nav>
 
       <div className="side-tools">

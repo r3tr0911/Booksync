@@ -1,0 +1,22 @@
+/* ================================
+    PRÉSTAMOS 
+================================ */
+
+/* Estado "Próximo a vencer" */
+.badge-proximo {
+    background: #f2b84b;
+    color: #2b1c0d;
+  }
+  
+  /* Estado "Vigente" */
+  .badge-vigente {
+    background: #3bb273;
+    color: #0b2415;
+  }
+  
+  /* Estado "Atrasado" */
+  .badge-atrasado {
+    background: #b93a3a;
+    color: #ffe9e9;
+  }
+  

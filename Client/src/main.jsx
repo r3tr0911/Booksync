@@ -11,6 +11,9 @@ import "./styles/help.css";
 import "./styles/forgotEmailSent.css";
 import "./styles/resetPassword.css";
 import "./styles/reservas.css";
+import "./styles/prestamos.css";
+import "./styles/loans.css";
+
 
 
 

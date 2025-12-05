@@ -3,22 +3,22 @@ import Sidebar from "../../components/sidebar";
 
 const reservas = [
     {
-    id: 1,
-    titulo: "La metamorfosis",
-    autor: "Kafka",
-    estado: "vencido",
-    reservadoEl: "14/05/2025",
-    recogerAntesDe: null,
-    portada: "/Covers/metamorfosis.jpg",
+        id: 1,
+        titulo: "La metamorfosis",
+        autor: "Kafka",
+        estado: "vencido",
+        reservadoEl: "14/05/2025",
+        recogerAntesDe: null,
+        portada: "/Covers/metamorfosis.jpg",
     },
     {
-    id: 2,
-    titulo: "Tan poca vida",
-    autor: "Yanagihara",
-    estado: "disponible",
-    reservadoEl: "05/12/2025",
-    recogerAntesDe: "03/12/2025",
-    portada: "/Covers/tan-poca-vida.jpg",
+        id: 2,
+        titulo: "Tan poca vida",
+        autor: "Yanagihara",
+        estado: "disponible",
+        reservadoEl: "05/12/2025",
+        recogerAntesDe: "03/12/2025",
+        portada: "/Covers/tan-poca-vida.jpg",
     },
 ];
 

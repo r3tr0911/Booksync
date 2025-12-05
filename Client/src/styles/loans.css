@@ -1,0 +1,253 @@
+/* ================================
+    LOANS  (Reservas + Préstamos)
+================================ */
+
+/* Fondo y layout */
+.reservas-page,
+.prestamos-page {
+  min-height: 100vh;
+  display: flex;
+  background-image: url("/FONDO.png");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Layout interno  */
+.reservas-page .app-layout,
+.prestamos-page .app-layout {
+  display: flex;
+  flex: 1;
+}
+
+/* Contenido principal */
+.reservas-content,
+.prestamos-content {
+  flex: 1;
+  position: relative;
+  padding-top: 80px; 
+}
+
+/* ================================
+    HEADER + BADGE 
+================================ */
+
+.reservas-header,
+.prestamos-header {
+  width: 75%;
+  margin: 0 auto -40px auto;
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  z-index: 999;
+  padding-left: 80px; 
+}
+
+.badge-mis-reservas,
+.badge-mis-prestamos {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  transform: translateY(20px);
+  padding: 16px 32px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #ffd666, #ffe89a);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+  color: #22160a;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.badge-mis-reservas .badge-icon i,
+.badge-mis-prestamos .badge-icon i {
+  font-size: 1.5rem;
+}
+
+.badge-mis-reservas .badge-text,
+.badge-mis-prestamos .badge-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+/* ================================
+    PANEL TRANSLÚCIDO
+================================ */
+
+.reservas-panel,
+.prestamos-panel {
+  position: relative;
+  z-index: 2;
+  margin: 40px auto 60px auto;
+  width: 75%;
+  padding: 60px 60px;
+  border-radius: 25px;
+  background: rgba(0, 0, 0, 0.411);
+  box-shadow: inset 0 0 0 1px rgba(140, 78, 0, 0.12), var(--shadow);
+  border: 2px solid rgba(82, 37, 4, 1);
+}
+
+/* Grid de cards dentro del panel */
+.reservas-grid,
+.prestamos-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 70px;
+  align-items: flex-start;
+}
+
+/* ================================
+    CARD BASE 
+================================ */
+
+.reserva-card,
+.prestamo-card {
+  width: 230px;
+  min-height: 380px;
+  padding: 22px 18px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.662),
+    rgba(0, 0, 0, 0.601)
+  );
+  border-radius: 38px;
+  border: 2px solid rgba(82, 37, 4, 0.33);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85);
+  color: #f9f5e7;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reserva-card:hover,
+.prestamo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 52px rgba(0, 0, 0, 0.9);
+}
+
+/* Portada del libro */
+.reserva-cover,
+.prestamo-cover {
+  width: 125px;
+  aspect-ratio: 2 / 3; 
+  border-radius: 15px;
+  overflow: hidden; 
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.reserva-cover img,
+.prestamo-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Info de la card */
+.reserva-info,
+.prestamo-info {
+  margin-bottom: 10px;
+  min-height: 90px;
+}
+
+.reserva-title,
+.prestamo-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.reserva-title span,
+.prestamo-title span {
+  font-style: italic;
+  font-weight: 400;
+}
+
+.reserva-row,
+.prestamo-row {
+  font-size: 0.8rem;
+  line-height: 1.3;
+  margin-bottom: 3px;
+}
+
+.reserva-row .label,
+.prestamo-row .label {
+  font-weight: 600;
+}
+
+/* Pie de la card */
+.reserva-footer,
+.prestamo-footer {
+  margin-top: auto;
+}
+
+/* Badge de estado  */
+.badge-estado {
+  display: inline-block;
+  padding: 6px 20px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* ================================
+    RESPONSIVE
+================================ */
+
+@media (max-width: 1200px) {
+  .reservas-header,
+  .prestamos-header {
+    margin-left: 200px;
+  }
+
+  .reservas-panel,
+  .prestamos-panel {
+    margin: 30px 40px 50px 200px;
+    padding: 40px 40px;
+  }
+
+  .reservas-grid,
+  .prestamos-grid {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 992px) {
+  .reservas-header,
+  .prestamos-header {
+    margin-left: 40px;
+  }
+
+  .reservas-panel,
+  .prestamos-panel {
+    margin: 30px 20px 50px 40px;
+    padding: 32px 24px;
+  }
+
+  .reservas-grid,
+  .prestamos-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .reserva-card,
+  .prestamo-card {
+    width: 260px;
+    height: auto;
+  }
+
+  .reserva-cover,
+  .prestamo-cover {
+    width: 170px;
+    height: 240px;
+  }
+}

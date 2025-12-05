@@ -54,16 +54,24 @@
 
 /* Lado izquierdo */
 .detalle-page .detalle-left {
-  flex: 1;
+  flex: 0 0 auto;              /* deja de estirarse, se adapta a su contenido */
+  display: flex;
+  flex-direction: column;
+  align-items: center;         /* centra imagen + botones */
   text-align: center;
 }
 
 .detalle-page .detalle-left img {
-  width: 300px;
+  display: block;
+  width: 200px;                
+  height: auto;                
   border-radius: 14px;
   border: 2px solid #d4a94d;
   box-shadow: 0 14px 26px rgba(0, 0, 0, 0.45);
+  margin-bottom: 1rem;         
+  
 }
+
 
 /* Estrellas */
 .detalle-page .rating {
