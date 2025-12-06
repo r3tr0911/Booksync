@@ -1,10 +1,8 @@
 /* ================================
-    LOANS  (Reservas + Préstamos)
+   FAVORITOS – USUARIO
 ================================ */
 
-/* Fondo y layout */
-.reservas-page,
-.prestamos-page,
+/* Contenedor general de la página de favoritos */
 .favoritos-page {
   min-height: 100vh;
   display: flex;
@@ -14,29 +12,22 @@
   background-attachment: fixed;
 }
 
-/* Layout interno  */
-.reservas-page .app-layout,
-.prestamos-page .app-layout,
-.favoritos-page .app-layout {
+/* Layout */
+.favoritos-page .app-layout,
+.favoritos-page .layout {
   display: flex;
   flex: 1;
 }
 
-/* Contenido principal */
-.reservas-content,
-.prestamos-content,
+/* Contenido principal a la derecha de la sidebar */
 .favoritos-content {
   flex: 1;
   position: relative;
   padding-top: 80px; 
 }
 
-/* ================================
-    HEADER + BADGE 
-================================ */
+/* MIS FAVORITOS */
 
-.reservas-header,
-.prestamos-header,
 .favoritos-header {
   width: 75%;
   margin: 0 auto -40px auto;
@@ -44,11 +35,9 @@
   justify-content: flex-start;
   position: relative;
   z-index: 999;
-  padding-left: 80px; 
+  padding-left: 80px;
 }
 
-.badge-mis-reservas,
-.badge-mis-prestamos,
 .badge-mis-favoritos {
   display: inline-flex;
   align-items: center;
@@ -63,26 +52,18 @@
   font-size: 1.2rem;
 }
 
-.badge-mis-reservas .badge-icon i,
-.badge-mis-prestamos .badge-icon i,
 .badge-mis-favoritos .badge-icon i {
   font-size: 1.5rem;
 }
 
-.badge-mis-reservas .badge-text,
-.badge-mis-prestamos .badge-text,
 .badge-mis-favoritos .badge-text {
   display: flex;
   flex-direction: column;
   line-height: 1.05;
 }
 
-/* ================================
-    PANEL TRANSLÚCIDO
-================================ */
+/*    PANEL TRANSLÚCIDO */
 
-.reservas-panel,
-.prestamos-panel,
 .favoritos-panel {
   position: relative;
   z-index: 2;
@@ -90,14 +71,12 @@
   width: 75%;
   padding: 60px 60px;
   border-radius: 25px;
-  background: rgba(0, 0, 0, 0.411);
-  box-shadow: inset 0 0 0 1px rgba(140, 78, 0, 0.12), var(--shadow);
+  background: rgba(0, 0, 0, 0.41);
+  box-shadow: inset 0 0 0 1px rgba(140, 78, 0, 0.12);
   border: 2px solid rgba(82, 37, 4, 1);
 }
 
 /* Grid de cards dentro del panel */
-.reservas-grid,
-.prestamos-grid,
 .favoritos-grid {
   display: flex;
   flex-direction: row;
@@ -105,13 +84,10 @@
   align-items: flex-start;
 }
 
-/* ================================
-    CARD BASE 
-================================ */
+/*    CARD FAVORITO */
 
-.reserva-card,
-.prestamo-card,
 .favorito-card {
+  position: relative;
   width: 230px;
   min-height: 380px;
   padding: 22px 18px 20px;
@@ -122,8 +98,8 @@
   text-align: center;
   background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.662),
-    rgba(0, 0, 0, 0.601)
+    rgba(0, 0, 0, 0.66),
+    rgba(0, 0, 0, 0.6)
   );
   border-radius: 38px;
   border: 2px solid rgba(82, 37, 4, 0.33);
@@ -132,21 +108,39 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.reserva-card:hover,
-.prestamo-card:hover,
-.favoritos-card:hover {
+.favorito-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 22px 52px rgba(0, 0, 0, 0.9);
 }
 
-/* Portada del libro */
-.reserva-cover,
-.prestamo-cover,
+/* Corazón   */
+.favorito.like {
+  position: absolute;
+  top: -24px;
+  right: 85%;
+  transform: translateX(50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: #ffe373;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.7);
+}
+
+.favorito.like i {
+  font-size: 1.1rem;
+  color: #3b2410;
+}
+
+/* Portada  */
 .favorito-cover {
   width: 125px;
-  aspect-ratio: 2 / 3; 
+  aspect-ratio: 2 / 3;
   border-radius: 15px;
-  overflow: hidden; 
+  overflow: hidden;
   box-shadow: 0 16px 30px rgba(0, 0, 0, 0.75);
   display: flex;
   align-items: center;
@@ -154,127 +148,99 @@
   margin-bottom: 18px;
 }
 
-.reserva-cover img,
-.prestamo-cover img,
-.favoritos-cover img {
+.favorito-cover img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
 }
 
-/* Info de la card */
-.reserva-info,
-.prestamo-info,
+/* Info de la card  */
 .favorito-info {
   margin-bottom: 10px;
   min-height: 90px;
 }
 
-.reserva-title,
-.prestamo-title,
-.favorito-tittle {
+.favorito-title {
   font-size: 0.88rem;
   font-weight: 600;
   margin-bottom: 6px;
 }
 
-.reserva-title span,
-.prestamo-title span
-.favoritos-tittle span {
+.favorito-title span {
   font-style: italic;
   font-weight: 400;
 }
 
-.reserva-row,
-.prestamo-row,
 .favorito-row {
   font-size: 0.8rem;
   line-height: 1.3;
   margin-bottom: 3px;
 }
 
-.reserva-row .label,
-.prestamo-row .label,
-.favoritos-row .label {
+.favorito-row .label {
   font-weight: 600;
+}
+
+.favorito-row.genero {
+  font-size: 0.78rem;
+  opacity: 0.9;
 }
 
 /* Pie de la card */
-.reserva-footer,
-.prestamo-footer,
 .favorito-footer {
   margin-top: auto;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
 }
 
-/* Badge de estado  */
-.badge-estado {
-  display: inline-block;
-  padding: 6px 20px;
+.btn-favorito-reservar,
+.btn-favorito-detalle {
+  padding: 7px 18px;
   border-radius: 999px;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 600;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
-/* ================================
-    RESPONSIVE
-================================ */
-
-@media (max-width: 1200px) {
-  .reservas-header,
-  .prestamos-header,
-  .favoritos-header {
-    margin-left: 200px;
-  }
-
-  .reservas-panel,
-  .prestamos-panel,
-  .favoritos-panel {
-    margin: 30px 40px 50px 200px;
-    padding: 40px 40px;
-  }
-
-  .reservas-grid,
-  .prestamos-grid,
-  .favoritos-grid {
-    gap: 40px;
-  }
+/* Botón principal  */
+.btn-favorito-reservar {
+  background: #2e7d32;
+  color: #f5f3e8;
 }
+
+/* Botón secundario  */
+.btn-favorito-detalle {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f5f3e8;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/*  RESPONSIVE */
 
 @media (max-width: 992px) {
-  .reservas-header,
-  .prestamos-header,
-  .favoritos-header {
-    margin-left: 40px;
-  }
-
-  .reservas-panel,
-  .prestamos-panel,
   .favoritos-panel {
     margin: 30px 20px 50px 40px;
     padding: 32px 24px;
   }
 
-  .reservas-grid,
-  .prestamos-grid,
   .favoritos-grid {
     flex-direction: column;
     align-items: center;
+    gap: 40px;
   }
 }
 
 @media (max-width: 768px) {
-  .reserva-card,
-  .prestamo-card,
-  .favoritos-card {
+  .favorito-card {
     width: 260px;
     height: auto;
   }
 
-  .reserva-cover,
-  .prestamo-cover,
-  .favoritos-cover {
+  .favorito-cover {
     width: 170px;
-    height: 240px;
   }
 }

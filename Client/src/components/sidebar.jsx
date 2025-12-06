@@ -20,10 +20,10 @@ function Sidebar({ onLogout }) {
       </Link>
 
       <nav className="side-actions">
-        <button className="side-btn" title="Favoritos">
+      <Link className="side-btn" title="Favoritos" to="/Favoritos">
           <i className="fa-solid fa-heart" />
           <small></small>
-        </button>
+      </Link>
 
         <Link className="side-btn" title="Reservas" to="/Reservas">
           <i className="fa-solid fa-bookmark" />

@@ -1,7 +1,7 @@
 import React from "react";
 import Sidebar from "../../components/sidebar";
 
-// OJO: estos estados son "vigente", "atrasado" y "proximo"
+
 const prestamos = [
   {
     id: 1,
@@ -25,7 +25,7 @@ const prestamos = [
     id: 3,
     titulo: "Utopía",
     autor: "Andre Htois",
-    estado: "proximo", // más simple que "proximo a vencer"
+    estado: "proximo", 
     prestadoEl: "20/05/2025",
     devolverAntesDe: "27/05/2025",
     portada: "/Covers/utopia.jpg",
