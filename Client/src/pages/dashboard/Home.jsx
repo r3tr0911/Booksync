@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useNavigate, Link} from "react-router-dom";
 import Sidebar from "../../components/sidebar";
+import { useLogoutToast } from "../../hooks/useLogoutToast";
 
 
 
@@ -46,8 +47,8 @@ function Home() {
   const [currentIndex, setCurrentIndex] = useState(0); 
   const trackRef = useRef(null);
 
-  // ==== Toast logout ====
-  const [showToast, setShowToast] = useState(false);
+    // ==== Hook de logout (toast global) ====
+    const { toast, openToast } = useLogoutToast();
 
 
   // ==== Lógica de búsqueda ====
@@ -83,13 +84,6 @@ function Home() {
     }
   }, [currentIndex]);
 
-  // ==== Autocierre del toast ====
-  useEffect(() => {
-    if (!showToast) return;
-    const timer = setTimeout(() => setShowToast(false), 5000);
-    return () => clearTimeout(timer);
-  }, [showToast]);
-
   const handlePrev = () => {
     setCurrentIndex((prev) =>
       (prev - 1 + FEATURED_BOOKS.length) % FEATURED_BOOKS.length
@@ -109,20 +103,11 @@ function Home() {
     navigate(`/detalle/${book.id}`);
   };
 
-  const handleLogoutClick = () => {
-    setShowToast(true);
-  };
-
-  const handleConfirmLogout = () => {
-    // aquí después puedes limpiar tokens, etc.
-    navigate("/");
-  };
-
   
   return (
     <div className="home-page">
       {/* ===== Sidebar ===== */}
-      <Sidebar onLogout={handleLogoutClick}/>
+      <Sidebar onLogout={openToast}/>
 
       {/* ===== Contenido ===== */}
       <main className="content">
@@ -282,43 +267,8 @@ function Home() {
         </section>
 
         {/* ===== Toast: Cerrar sesión ===== */}
-        <div
-          id="logout-toast"
-          className={`toast-logout ${showToast ? "is-visible" : ""}`}
-          aria-hidden={showToast ? "false" : "true"}
-          role="alertdialog"
-          aria-labelledby="logout-title"
-          aria-describedby="logout-desc"
-        >
-          <div className="toast-card">
-            <div className="toast-header">
-              <span id="logout-title" className="toast-title">
-                Cerrar sesión
-              </span>
-              <button
-                className="toast-close"
-                type="button"
-                aria-label="Cerrar aviso"
-                onClick={() => setShowToast(false)}
-              >
-                &times;
-              </button>
-            </div>
-            <p id="logout-desc" className="toast-desc">
-              Estás a punto de cerrar sesión
-            </p>
-            <div className="toast-actions">
-              <button
-                id="toast-confirm-logout"
-                className="btn-danger"
-                type="button"
-                onClick={handleConfirmLogout}
-              >
-                Cerrar sesión
-              </button>
-            </div>
-          </div>
-        </div>
+        {/* Toast de logout reutilizable */}
+        {toast}
       </main>
     </div>
   );

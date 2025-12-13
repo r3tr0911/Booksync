@@ -9,6 +9,7 @@ import Reset from "./pages/auth/ResetPassword.jsx";
 import ReservasUsuario from "./pages/dashboard/ReservasUsuario.jsx";
 import PrestamosUsuarios from "./pages/dashboard/PrestamosUsuarios.jsx";
 import Favorites from "./pages/dashboard/Favorites.jsx";
+import Account from "./pages/dashboard/Account.jsx";
 
 
 
@@ -27,6 +28,7 @@ function App() {
         <Route path="/Reservas" element={<ReservasUsuario />} />
         <Route path="/Prestamos" element={<PrestamosUsuarios />} />
         <Route path="/Favoritos" element={<Favorites />} />
+        <Route path="/Cuenta" element={<Account />} />
       </Routes>
     </BrowserRouter>
   );

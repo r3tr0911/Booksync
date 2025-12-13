@@ -1,5 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useLogoutToast } from "../../hooks/useLogoutToast";
+import Sidebar from "../../components/sidebar";
 
 const BOOKS = {
   utopia: {
@@ -54,6 +56,7 @@ const BOOKS = {
 
 function Detalle() {
   const navigate = useNavigate();
+  const {toast, openToast} = useLogoutToast();
   const { id } = useParams();
   const [showReserveToast, setShowReserveToast] = useState(false);
 
@@ -94,45 +97,7 @@ function Detalle() {
   return (
     <div className="detalle-page">
       {/* ===== Sidebar ===== */}
-      <aside className="sidebar">
-        <button
-          className="brand"
-          type="button"
-          onClick={handleBackHome}
-          aria-label="Inicio"
-        >
-          <img src="/BOOKSYNC LOGO 2.png" alt="BookSync" />
-        </button>
-
-        <nav className="side-actions">
-          <button className="side-btn" type="button" title="Mis Favoritos">
-            <i className="fa-solid fa-heart" />
-          </button>
-          <button className="side-btn" type="button" title="Mis reservas">
-            <i className="fa-solid fa-bookmark" />
-          </button>
-          <button className="side-btn" type="button" title="Mis préstamos">
-            <i className="fa-solid fa-cart-shopping" />
-          </button>
-        </nav>
-
-        <div className="side-tools">
-          <button className="tool" type="button" title="Cuenta">
-            <i className="fa-regular fa-user" />
-          </button>
-          <button className="tool" type="button" title="Ajustes">
-            <i className="fa-solid fa-gear" />
-          </button>
-          <button
-            className="tool"
-            type="button"
-            title="Salir"
-            onClick={handleLogout}
-          >
-            <i className="fa-solid fa-right-from-bracket" />
-          </button>
-        </div>
-      </aside>
+      <Sidebar onLogout={openToast}/>
 
       {/* ===== Contenido del detalle ===== */}
       <main className="content detalle-content">
@@ -229,6 +194,7 @@ function Detalle() {
           </button>
         </div>
       </main>
+      {toast}
     </div>
   );
 }

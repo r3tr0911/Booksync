@@ -1,0 +1,404 @@
+/* ===========================
+   ROOT Y LAYOUT CON SIDEBAR
+   =========================== */
+
+   .account-page {
+    min-height: 100vh;
+  }
+  
+  .account-page .account-layout {
+    display: flex;
+    min-height: 100vh;
+    background-color: #050505; 
+  }
+  
+  /* Área principal (lado derecho) */
+  .account-page .account-main {
+    flex: 1;
+    min-height: 100vh;
+    padding: 24px 32px;
+    box-sizing: border-box;
+    background-image: url("/FONDO.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow-y: auto;
+  }
+  
+  /* Contenedor centrado dentro del main */
+  .account-page .account-page__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  
+  /* Panel translúcido principal */
+  .account-page .account-page__panel {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 24px 32px 28px;
+    border-radius: 24px;
+    background: rgba(189, 142, 57, 0.5); 
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* ===========================
+     HEADER (TÍTULO + AVATAR + USUARIO)
+     =========================== */
+  
+  .account-page .account-header__title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #000000;
+    opacity: 0.9;
+    margin: 0 0 10px;
+  }
+  
+  /* Fila avatar + bloque usuario */
+  .account-page .account-header__row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 8px;
+  }
+  
+  .account-page .account-header__avatar {
+    flex: 0 0 auto;
+  }
+  
+  /* Avatar */
+  .account-page .account-avatar-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #ffeec2;
+    display: grid;
+    place-items: center;
+    font-size: 2rem;
+    color: #5a3d1a;
+    border: 2px solid rgba(0, 0, 0, 0.6);
+  }
+  
+  /* Bloque de usuario  */
+  .account-page .account-header__user-block {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  /* Label Usuario + input */
+  .account-page .account-header__user-top {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+  
+  .account-page .account-header__user-label {
+    font-size: 0.9rem;
+    color: #000000;
+  }
+  
+  /* Input de usuario  */
+  .account-page .account-header__user-input {
+    width: 220px;
+    max-width: 220px;
+    height: 34px;
+    box-sizing: border-box;
+    padding: 6px 14px;
+    display: inline-block;
+    flex: 0 0 auto;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.7);
+    background: #ffeec2;
+    font-size: 0.9rem;
+    color: #000000;
+  }
+  
+  /* Chips USUARIO / ACTIVO */
+  .account-page .account-header__chips {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 2px;
+    margin-left: 25px;           
+  }
+  
+  .account-page .account-chip {
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border: 2px solid #3a2a10;
+    background: #f7d26e;
+    color: #3a2a10;
+  }
+  
+  /* segundo chip un pelín separado */
+  .account-page .account-chip--status {
+    margin-left: 15px;
+  }
+  
+  /* ===========================
+    CUERPO: FORM + DISPOSITIVOS
+     =========================== */
+  
+  /* Contenedor de columnas */
+  .account-page .account-body {
+    display: flex;
+    justify-content: center;     
+    align-items: flex-start;
+    gap: 72px;                   
+    margin-top: 24px;
+  }
+  
+  /* Columna izquierda (Datos guardados) */
+  .account-page .account-left {
+    flex: 0 0 500px;             
+  }
+  
+  /* Columna derecha (Dispositivos) */
+  .account-page .account-right {
+    flex: 0 0 420px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Etiqueta “Datos guardados” */
+  .account-page .account-section-label {
+    display: inline-block;
+    margin-bottom: 16px;
+    padding: 6px 20px;
+    border-radius: 10px;
+    background: #e7c98a;
+    color: #4c3a1a;
+    font-size: 0.85rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  
+  /* ---------- Formulario izquierda ---------- */
+  
+  .account-page .account-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 560px;
+    width: 100%;
+  }
+  
+  .account-page .account-form__field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .account-page .account-form__field label {
+    font-size: 0.9rem;
+    color: #000000;
+  }
+  
+  .account-page .account-form__field input {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.7);
+    background: #ffeec2;
+    font-size: 0.95rem;
+    color: #000000;
+  }
+  
+  .account-page .account-form__field input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.35);
+  }
+  
+  .account-page .account-form__actions {
+    margin-top: 20px;
+  }
+  
+  /* ---------- Card dispositivos derecha ---------- */
+  
+  .account-page .account-devices-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 22px 24px 20px;
+    border-radius: 10px;
+    background: rgba(248, 240, 225, 0.96);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    margin-top: 50px;           
+  }
+  
+  .account-page .account-devices__title {
+    margin: 0 0 4px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #000000;
+  }
+  
+  .account-page .account-devices__subtitle {
+    margin: 0 0 16px;
+    font-size: 0.9rem;
+    color: #000000;
+  }
+  
+  /* Tabla de dispositivos */
+  .account-page .account-devices__table-wrapper {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    background: rgba(255, 239, 197, 0.9);
+  }
+  
+  .account-page .account-devices__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    color: #000000;
+  }
+  
+  .account-page .account-devices__table th,
+  .account-page .account-devices__table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .account-page .account-devices__table th {
+    text-align: left;
+    background: rgba(0, 0, 0, 0.04);
+  }
+  
+  .account-page .account-devices__table tbody tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .account-page .account-device--current td {
+    font-weight: 600;
+  }
+  
+  /* Icono de dispositivo */
+  .account-page .account-device__icon-cell {
+    width: 32px;
+    text-align: center;
+  }
+  
+  .account-page .account-device__icon-cell i {
+    font-size: 0.9rem;
+    color: #cfae64; 
+  }
+  
+  /* Botones de la card */
+  .account-page .account-devices__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  
+  /* ===========================
+    BOTONES GENERALES
+     =========================== */
+  
+  .account-page .account-btn {
+    border-radius: 10px;
+    padding: 9px 20px;
+    font-size: 0.9rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: transform 0.06s ease, box-shadow 0.06s ease,
+      background-color 0.15s ease;
+  }
+
+  .account-page .account-btn__icon {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 8px;   
+  }
+  
+  .account-page .account-btn:active {
+    transform: translateY(1px);
+    box-shadow: none;
+  }
+  
+  .account-page .account-btn--primary {
+    background: #f7d470;
+    border-color: rgba(0, 0, 0, 0.7);
+    color: #3a2a10;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  }
+  
+  .account-page .account-btn--primary:hover {
+    background: #f3c752;
+  }
+  
+  .account-page .account-btn--dark {
+    background: #000;
+    color: #f5f5f5;
+    border-color: #000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  }
+  
+  .account-page .account-btn--dark:hover {
+    background: #222;
+  }
+  
+  .account-page .account-btn--danger {
+    background: #b31313;
+    color: #ffffff;
+    border-color: #5c0505;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    padding-inline: 32px;
+  }
+  
+  /* ===========================
+     ZONA DE PELIGRO (DESACTIVAR)
+     =========================== */
+  
+  .account-page .account-danger-zone {
+    display: flex;
+    justify-content: center;
+    margin-top: 26px;
+  }
+  
+  /* ===========================
+     RESPONSIVE
+     =========================== */
+  
+  @media (max-width: 960px) {
+    .account-page .account-main {
+      padding: 16px;
+    }
+  
+    .account-page .account-page__panel {
+      padding: 20px 18px 24px;
+    }
+  
+    .account-page .account-header__row {
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+  
+    .account-page .account-body {
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+  
+    .account-page .account-left,
+    .account-page .account-right {
+      flex: 0 1 auto;
+      width: 100%;
+    }
+  
+    .account-page .account-form {
+      max-width: 100%;
+    }
+  
+    .account-page .account-devices-card {
+      max-width: 480px;
+      margin-top: 16px;
+    }
+  }
+  

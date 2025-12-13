@@ -34,12 +34,14 @@ function Sidebar({ onLogout }) {
           <i className="fa-solid fa-cart-shopping" />
           <small></small>
         </Link>
+
       </nav>
 
       <div className="side-tools">
-        <button className="tool" title="Cuenta">
+        <Link className="tool" title="Cuenta" to="/Cuenta">
           <i className="fa-regular fa-user" />
-        </button>
+          <small></small>
+        </Link>
 
         <button className="tool" title="Ajustes">
           <i className="fa-solid fa-gear" />

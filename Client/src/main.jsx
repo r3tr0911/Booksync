@@ -14,6 +14,8 @@ import "./styles/reservas.css";
 import "./styles/prestamos.css";
 import "./styles/favoritos.css";
 import "./styles/loans.css";
+import "./styles/cuenta.css";
+import "./styles/toast.css";
 
 
 

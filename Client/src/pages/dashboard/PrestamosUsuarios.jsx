@@ -1,5 +1,6 @@
 import React from "react";
 import Sidebar from "../../components/sidebar";
+import { useLogoutToast } from "../../hooks/useLogoutToast";
 
 
 const prestamos = [
@@ -33,6 +34,7 @@ const prestamos = [
 ];
 
 function PrestamosUsuarios() {
+    const {toast, openToast} = useLogoutToast();
     const renderEstado = (estado) => {
         switch (estado) {
             case "proximo":
@@ -61,7 +63,7 @@ function PrestamosUsuarios() {
     return (
         <div className="prestamos-page">
             <div className="app-layout">
-                <Sidebar />
+                <Sidebar onLogout={openToast}/>
 
                 <main className="prestamos-content">
                     {/* HEADER */}
@@ -110,6 +112,7 @@ function PrestamosUsuarios() {
                         </div>
                     </section>
                 </main>
+                {toast}
             </div>
         </div>
     );

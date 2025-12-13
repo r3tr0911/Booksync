@@ -1,6 +1,7 @@
-import React, { use } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../../components/sidebar";
+import { useLogoutToast } from "../../hooks/useLogoutToast";
 
 
 const favorites = [
@@ -24,6 +25,7 @@ const favorites = [
 
 function Favorites (){
     const navigate = useNavigate();
+    const { toast, openToast } = useLogoutToast();
     
     const handleReservar = (idLibro) => {
         console.log("Reservar libro id:", idLibro)
@@ -74,7 +76,7 @@ function Favorites (){
     return (
         <div className="favoritos-page">
             <div className="app layout">
-                <Sidebar />
+                <Sidebar onLogout={openToast} />
 
                 <main className="favoritos-content">
                     {/* HEADER */}
@@ -128,6 +130,7 @@ function Favorites (){
                             )}
                         </div>
                     </section>
+                    {toast}
                 </main>
             </div>
         </div>

@@ -1,0 +1,105 @@
+/* === Toast Cerrar Sesión === */
+.toast-logout{
+    position:fixed;
+    left:18px;
+    bottom:18px;
+    z-index:4000;
+    display:none;
+}
+
+.toast-logout.is-visible{
+    display:block;
+}
+
+.toast-card{
+    width:260px;
+    background:#ffffff;
+    color:#1a1a1a;
+    border-radius:12px;
+    box-shadow:0 18px 40px rgba(0,0,0,.35);
+    border:1px solid rgba(0,0,0,.06);
+    overflow:hidden;
+    font-family:inherit;
+}
+
+.toast-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px 12px;
+    background:#f7f7f7;
+    border-bottom:1px solid rgba(0,0,0,.06);
+}
+
+.toast-title{
+    font-weight:700;
+    font-size:14px;
+}
+
+.toast-close{
+    border:0;
+    background:transparent;
+    font-size:18px;
+    line-height:1;
+    cursor:pointer;
+    color:#444;
+    padding:0 4px;
+}
+
+.toast-desc{
+    padding:12px;
+    font-size:13px;
+    margin:0;
+}
+
+.toast-actions{
+    display:flex;
+    gap:10px;
+    padding:12px;
+    padding-top:0;
+    margin-top:-4px;
+}
+
+.btn-danger{
+    flex:1;
+    background:#c0342b;
+    color:#fff;
+    border:0;
+    cursor:pointer;
+    border-radius:8px;
+    padding:8px 10px;
+    font-weight:700;
+    box-shadow:0 6px 14px rgba(192,52,43,.35);
+}
+
+.btn-danger:hover{
+    filter:brightness(1.05);
+}
+
+.btn-ghost{
+    background:transparent;
+    border:1px solid rgba(0,0,0,.15);
+    color:#333;
+    border-radius:8px;
+    padding:8px 10px;
+    cursor:pointer;
+}
+
+@media (prefers-color-scheme: dark){
+    .toast-card{
+        background:#1b1b1f;
+        color:#eee;
+        border-color:rgba(255,255,255,.08);
+    }
+    .toast-header{
+        background:#22242a;
+        border-color:rgba(255,255,255,.08);
+    }
+    .toast-close{
+        color:#ddd;
+    }
+    .btn-ghost{
+        color:#eee;
+        border-color:rgba(255,255,255,.18);
+    }
+}
