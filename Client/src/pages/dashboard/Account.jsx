@@ -183,7 +183,7 @@ function Account({
                                                 <thead>
                                                     <tr>
                                                         <th></th>
-                                                        <th   th>Dispositivo</th>
+                                                        <th>Dispositivo</th>
                                                         <th>Última conexión</th>
                                                     </tr>
                                                 </thead>

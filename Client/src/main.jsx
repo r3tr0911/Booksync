@@ -16,9 +16,7 @@ import "./styles/favoritos.css";
 import "./styles/loans.css";
 import "./styles/cuenta.css";
 import "./styles/toast.css";
-
-
-
+import "./styles/ajustes.css";
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(

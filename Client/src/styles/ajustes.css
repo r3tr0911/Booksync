@@ -1,0 +1,240 @@
+/* ===== Root de la vista ===== */
+
+.settings-page {
+    min-height: 100vh;
+  }
+  
+  /* ===== Layout con sidebar ===== */
+  
+  .settings-page .settings-layout {
+    display: flex;
+    min-height: 100vh;
+    background-color: #050505; 
+  }
+  
+  /* Área principal (fondo biblioteca) */
+  .settings-page .settings-main {
+    flex: 1;
+    min-height: 100vh;
+    padding: 24px 32px;
+    box-sizing: border-box;
+    background-image: url("/FONDO.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow-y: auto;
+  }
+  
+  /* Centrado del panel dentro del área principal */
+  .settings-page .settings-page__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  
+  /* ===== Panel translúcido principal ===== */
+  
+  .settings-page .settings-page__panel {
+    max-width: 1080px;
+    margin: 100px;
+    padding: 30px 32px 32px;
+    border-radius: 24px;
+    background: rgba(189, 142, 57, 0.5); /* dorado translúcido */
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* ===== Header ===== */
+  
+  .settings-page .settings-header__title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #000000;
+    opacity: 0.9;
+    margin: 0 0 18px;
+  }
+  
+  /* ===== Body: columnas ===== */
+  
+  .settings-page .settings-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 48px;
+    align-items: flex-start;
+  }
+  
+  /* Etiqueta superior de cada columna ("ALERTAS...", "SEGURIDAD") */
+  
+  .settings-page .settings-section-label {
+    display: inline-block;
+    margin-bottom: 18px;
+    padding: 6px 20px;
+    border-radius: 10px;
+    background: #e7c98a;
+    color: #4c3a1a;
+    font-size: 0.85rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  
+  .settings-page .settings-section-label--right {
+    text-align: center;
+  }
+  
+  /* ===== Columna izquierda: alertas ===== */
+  
+  .settings-page .settings-alerts-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .settings-page .settings-alerts-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .settings-page .settings-alert-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: #000000;
+  }
+  
+  .settings-page .settings-alert-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #8b5a12; /* color del check */
+    cursor: pointer;
+  }
+  
+  .settings-page .settings-alert-item label {
+    cursor: pointer;
+  }
+  
+  .settings-page .settings-divider {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.35);
+    margin: 18px 0 22px;
+  }
+  
+  .settings-page .settings-alerts-actions {
+    display: flex;
+    justify-content: flex-start;
+  }
+  
+  /* ===== Columna derecha: seguridad ===== */
+  
+  .settings-page .settings-security-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .settings-page .settings-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .settings-page .settings-field label {
+    font-size: 0.9rem;
+    color: #000000;
+  }
+  
+  .settings-page .settings-field input {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.7);
+    background: #ffeec2;
+    font-size: 0.95rem;
+    color: #000000;
+  }
+  
+  .settings-page .settings-field input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.35);
+  }
+  
+  .settings-page .settings-security-actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-start;
+  }
+  
+  /* ===== Botones genéricos ===== */
+  
+  .settings-page .settings-btn {
+    border-radius: 10px;
+    padding: 9px 20px;
+    font-size: 0.9rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.06s ease, box-shadow 0.06s ease,
+      background-color 0.15s ease;
+  }
+  
+  .settings-page .settings-btn__icon {
+    display: inline-flex;
+  }
+  
+  .settings-page .settings-btn:active {
+    transform: translateY(1px);
+    box-shadow: none;
+  }
+  
+  .settings-page .settings-btn--primary {
+    background: #f7d470;
+    border-color: rgba(0, 0, 0, 0.7);
+    color: #3a2a10;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  }
+  
+  .settings-page .settings-btn--primary:hover {
+    background: #f3c752;
+  }
+  
+  .settings-page .settings-btn--danger {
+    background: #b31313;
+    color: #ffffff;
+    border-color: #5c0505;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    padding-inline: 32px;
+  }
+  
+  /* ===== Footer ===== */
+  
+  .settings-page .settings-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  
+  /* ===== Responsive ===== */
+  
+  @media (max-width: 960px) {
+    .settings-page .settings-main {
+      padding: 16px;
+    }
+  
+    .settings-page .settings-page__panel {
+      padding: 20px 18px 24px;
+    }
+  
+    .settings-page .settings-body {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 28px;
+    }
+  
+    .settings-page .settings-section-label--right {
+      margin-top: 8px;
+    }
+  }
+  

@@ -43,9 +43,10 @@ function Sidebar({ onLogout }) {
           <small></small>
         </Link>
 
-        <button className="tool" title="Ajustes">
+        <Link className="tool" title="Ajustes" to="/Ajustes">
           <i className="fa-solid fa-gear" />
-        </button>
+          <small></small>
+        </Link>
 
         <button
           id="btn-logout"
