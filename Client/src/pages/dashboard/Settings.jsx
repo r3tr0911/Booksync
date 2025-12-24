@@ -1,7 +1,6 @@
 import Sidebar from "../../components/sidebar";
 import { useState } from "react";
 import { useLogoutToast } from "../../hooks/useLogoutToast";
-import { useAsyncError } from "react-router-dom";
 
 function Settings ({
     onSaveAlerts,

@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
+import { BrowserRouter } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext.jsx";
 import "./index.css";
 import "./styles/style.css";
 import "./styles/login.css";
@@ -17,11 +19,17 @@ import "./styles/loans.css";
 import "./styles/cuenta.css";
 import "./styles/toast.css";
 import "./styles/ajustes.css";
+import "./styles/inventarioAdmin.css";
+import "./styles/reservasAdmin.css";
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

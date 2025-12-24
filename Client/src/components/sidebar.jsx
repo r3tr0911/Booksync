@@ -1,11 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext.jsx";
 
 function Sidebar({ onLogout }) {
   const navigate = useNavigate();
+  const { isAdmin } = useAuth();
 
   const handleLogout = () => {
     if (onLogout) {
-      // Home nos pasó un callback para mostrar el toast
       onLogout();
     } else {
       // Fallback: si nadie pasó onLogout, navegar directo
@@ -34,8 +35,28 @@ function Sidebar({ onLogout }) {
           <i className="fa-solid fa-cart-shopping" />
           <small></small>
         </Link>
-
       </nav>
+
+      {/* admin */}
+      {isAdmin && (
+        <nav className="side-actions side-actions--admin" aria-label="Secciones de administración">
+          <Link className="side-btn" title="Gestión de inventario" to="/admin/inventario" >
+            <i className="fa-solid fa-boxes-stacked" />
+            <small></small>
+          </Link>
+
+          <Link className="side-btn" title="Gestión de reservas" to="/admin/reservas" >
+            <i className="fa-solid fa-calendar-check" />
+            <small></small>
+          </Link>
+
+          <Link className="side-btn" title="Gestión de usuarios" to="/admin/usuarios" >
+            <i className="fa-solid fa-users-gear" />
+            <small></small>
+          </Link>
+        </nav>
+      )}
+
 
       <div className="side-tools">
         <Link className="tool" title="Cuenta" to="/Cuenta">

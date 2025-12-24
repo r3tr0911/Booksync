@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/auth/Login.jsx";
 import Register from "./pages/auth/Register.jsx";
 import Home from "./pages/dashboard/Home.jsx";
@@ -12,14 +12,18 @@ import Favorites from "./pages/dashboard/Favorites.jsx";
 import Account from "./pages/dashboard/Account.jsx";
 import Settings from "./pages/dashboard/Settings.jsx";
 
+import InventarioAdmin from "./pages/Admin/InventarioAdmin.jsx";
+import ReservasAdmin from "./pages/Admin/ReservasAdmin.jsx";
+import UsuariosAdmin from "./pages/Admin/UsuariosAdmin.jsx";
 
-
-
+import { AuthProvider } from "./context/AuthContext.jsx";
+import { AdminRoute } from "./components/AdminRoute.jsx";
 
 function App() {
   return (
-    <BrowserRouter>
+    <AuthProvider>
       <Routes>
+          
         <Route path="/" element={<Login/>} />
         <Route path="/Register" element={<Register/>} />
         <Route path="/Help" element={<Help />} />
@@ -32,8 +36,17 @@ function App() {
         <Route path="/Favoritos" element={<Favorites />} />
         <Route path="/Cuenta" element={<Account />} />
         <Route path="/Ajustes" element={<Settings />} />
+
+        {/* ===== RUTAS ADMIN ===== */}
+        <Route path="/admin/inventario" element={<AdminRoute> <InventarioAdmin /> </AdminRoute>} />
+        <Route path="/admin/reservas" element={<AdminRoute> <ReservasAdmin /> </AdminRoute>} />
+        <Route path="/admin/usuarios" element={<AdminRoute> <UsuariosAdmin /> </AdminRoute>} />
+
+        {/* Fallback */}
+        <Route path="*" element={<Navigate to="/Home" replace />} />
+
       </Routes>
-    </BrowserRouter>
+    </AuthProvider>
   );
 }
 

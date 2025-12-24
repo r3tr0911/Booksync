@@ -1,0 +1,373 @@
+.inventory-admin-page {
+  min-height: 100vh;
+}
+
+.inventory-admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #050505; 
+}
+
+.inventory-admin-main {
+  flex: 1;
+  min-height: 100vh;
+  padding: 24px 32px;
+  box-sizing: border-box;
+  background-image: url("/FONDO.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow-y: auto;
+}
+
+/* Panel grande translúcido  */
+
+.inventory-admin-panel {
+  max-width: 1120px;
+  margin: 32px auto 40px;
+  padding: 28px 32px 30px;
+  border-radius: 26px;
+  background: rgba(189, 142, 57, 0.48);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+}
+
+/* ===== HEADER ===== */
+
+.inventory-admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.inventory-admin-title-block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.inventory-admin-title {
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #f8f4e9;
+}
+
+.inventory-admin-counter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  height: 24px;
+  padding:15px;
+  border-radius: 12px;
+  font-size: 1rem;
+  background: #f7d470;
+  color: #000000;
+}
+
+/* Botones superiores derecha */
+
+.inventory-admin-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Botón base */
+
+.inv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  background: transparent;
+  color: #1f1306;
+  transition: transform 0.06s ease, box-shadow 0.06s ease,
+    background-color 0.15s ease;
+}
+
+.inv-btn i {
+  font-size: 0.8rem;
+}
+
+.inv-btn:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+/* Variantes */
+
+.inv-btn--primary {
+  background: #f7d470;
+  border-color: rgba(0, 0, 0, 0.65);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+}
+
+.inv-btn--primary:hover {
+  background: #f3c752;
+}
+
+.inv-btn--ghost {
+  background: #f7d470;
+  border-color: rgba(0, 0, 0, 0.4);
+}
+
+.inv-btn--ghost:hover {
+  background: rgba(250, 235, 200, 0.25);
+}
+
+
+/* ===== BUSCADOR ===== */
+
+.inventory-admin-search-row {
+  margin-top: 6px;
+  margin-bottom: 35px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.inventory-admin-search {
+  display: flex;
+  align-items: center;
+  width: 60%;
+  max-width: 520px;
+  background: rgba(254, 246, 225, 0.96);
+  border-radius: 999px;
+  padding-inline: 16px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+}
+
+.inventory-admin-search .search-icon {
+  margin-right: 10px;
+  font-size: 0.9rem;
+  color: #4a3a1e;
+}
+
+.inventory-admin-search input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 0.9rem;
+  padding: 10px 0;
+  outline: none;
+}
+
+.inventory-admin-search .search-voice {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.95rem;
+  padding-left: 10px;
+  color: #4a3a1e;
+}
+
+/* ===== FILTROS ===== */
+
+.inventory-admin-filters-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.inv-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.45);
+  background: rgba(248, 237, 210, 0.95);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.inv-chip i {
+  font-size: 0.75rem;
+}
+
+/* ===== TABLA DE INVENTARIO ===== */
+
+.inventory-admin-table-wrapper {
+  margin-top: 6px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(36, 20, 4, 0.75);
+  border: 1px solid rgba(0, 0, 0, 0.55);
+}
+
+.inventory-admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  color: #f7f1e7;
+}
+
+.inventory-admin-table thead {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.inventory-admin-table th,
+.inventory-admin-table td {
+  padding: 10px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.inventory-admin-table th {
+  font-weight: 600;
+  text-align: left;
+}
+
+.inventory-admin-table tbody tr:nth-child(even) {
+  background: rgba(255, 244, 208, 0.04);
+}
+
+.inventory-admin-table tbody tr:hover {
+  background: rgba(0, 0, 0, 0.24);
+}
+
+/* Columnas especiales */
+
+.col-checkbox {
+  width: 40px;
+}
+
+.col-stock {
+  width: 140px;
+}
+
+.col-actions {
+  width: 120px;
+  text-align: right;
+}
+
+/* Pastilla de stock */
+
+.stock-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(249, 231, 174, 0.95);
+  color: #3a2a10;
+}
+
+.stock-pill__number {
+  min-width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: #c88e07;
+  color: #f7f3e8;
+  font-size: 0.75rem;
+}
+
+.stock-pill__status {
+  font-size: 0.8rem;
+}
+
+/* Acciones de fila */
+
+.row-action {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 4px;
+  margin-left: 4px;
+  font-size: 0.85rem;
+  color: #f7f1e7;
+}
+
+.row-action:hover {
+  transform: translateY(-1px);
+}
+
+/* Mensaje sin resultados */
+
+.no-results {
+  text-align: center;
+  padding: 18px 12px;
+  font-style: italic;
+  color: #f5e9d0;
+}
+
+/* ===== FOOTER ACCIONES MASIVAS ===== */
+
+.inventory-admin-footer {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.inventory-admin-bulk-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.inventory-admin-view-mode {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.inventory-admin-view-mode .more-options {
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  background: rgba(248, 237, 210, 0.95);
+  color: #1f1306;
+  padding: 6px 10px;
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 1024px) {
+  .inventory-admin-main {
+    padding: 16px;
+  }
+
+  .inventory-admin-panel {
+    margin-top: 20px;
+    padding-inline: 20px;
+  }
+
+  .inventory-admin-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .inventory-admin-search {
+    width: 100%;
+    max-width: none;
+  }
+
+  .inventory-admin-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .inventory-admin-panel {
+    padding-inline: 16px;
+  }
+
+  .inventory-admin-table {
+    font-size: 0.8rem;
+  }
+
+  .inventory-admin-title {
+    font-size: 1.7rem;
+  }
+}
