@@ -40,17 +40,17 @@ function Sidebar({ onLogout }) {
       {/* admin */}
       {isAdmin && (
         <nav className="side-actions side-actions--admin" aria-label="Secciones de administración">
-          <Link className="side-btn" title="Gestión de inventario" to="/admin/inventario" >
+          <Link className="side-btn" title="Gestión de inventario" to="/Admin/Inventario" >
             <i className="fa-solid fa-boxes-stacked" />
             <small></small>
           </Link>
 
-          <Link className="side-btn" title="Gestión de reservas" to="/admin/reservas" >
+          <Link className="side-btn" title="Gestión de reservas" to="/Admin/Reservas" >
             <i className="fa-solid fa-calendar-check" />
             <small></small>
           </Link>
 
-          <Link className="side-btn" title="Gestión de usuarios" to="/admin/usuarios" >
+          <Link className="side-btn" title="Gestión de usuarios" to="/Admin/Usuarios" >
             <i className="fa-solid fa-users-gear" />
             <small></small>
           </Link>

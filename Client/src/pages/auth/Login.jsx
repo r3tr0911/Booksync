@@ -15,7 +15,7 @@ function Login (){
 
         const ok = email.trim().length > 5 && password.length >= 6;
         if(ok) {
-            navigate("/home");
+            navigate("/Home");
         } else {
             alert("Verifique el correo y la contraseña");
         }
@@ -89,8 +89,8 @@ function Login (){
 
                         <div className="links">
                             <Link to="/Forgot">¿Olvidaste tu contraseña?</Link>
-                            <Link to="/help">¿Necesitas ayuda?</Link>
-                            <Link to="/register">¿No tienes cuenta?</Link>
+                            <Link to="/Help">¿Necesitas ayuda?</Link>
+                            <Link to="/Register">¿No tienes cuenta?</Link>
                         </div>
                         
                     </form>

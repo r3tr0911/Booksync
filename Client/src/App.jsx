@@ -38,9 +38,9 @@ function App() {
         <Route path="/Ajustes" element={<Settings />} />
 
         {/* ===== RUTAS ADMIN ===== */}
-        <Route path="/admin/inventario" element={<AdminRoute> <InventarioAdmin /> </AdminRoute>} />
-        <Route path="/admin/reservas" element={<AdminRoute> <ReservasAdmin /> </AdminRoute>} />
-        <Route path="/admin/usuarios" element={<AdminRoute> <UsuariosAdmin /> </AdminRoute>} />
+        <Route path="/Admin/Inventario" element={<AdminRoute> <InventarioAdmin /> </AdminRoute>} />
+        <Route path="/Admin/Reservas" element={<AdminRoute> <ReservasAdmin /> </AdminRoute>} />
+        <Route path="/Admin/Usuarios" element={<AdminRoute> <UsuariosAdmin /> </AdminRoute>} />
 
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/Home" replace />} />

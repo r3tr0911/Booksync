@@ -6,7 +6,7 @@ export function AdminRoute({ children }) {
     const { isAdmin } = useAuth();
     // Si NO es admin, lo mando al home
     if (!isAdmin) {
-        return <Navigate to="/home" replace />;
+        return <Navigate to="/Home" replace />;
     }
     // Si sí es admin, muestro la vista 
     return children;
