@@ -21,6 +21,7 @@ import "./styles/toast.css";
 import "./styles/ajustes.css";
 import "./styles/inventarioAdmin.css";
 import "./styles/reservasAdmin.css";
+import "./styles/usuariosAdmin.css";
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(

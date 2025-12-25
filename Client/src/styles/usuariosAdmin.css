@@ -1,0 +1,272 @@
+.users-admin-page {
+    min-height: 100vh;
+  }
+  
+  .users-admin-layout {
+    display: flex;
+    min-height: 100vh;
+    background-color: #050505;
+  }
+  
+  .users-admin-main {
+    flex: 1;
+    min-height: 100vh;
+    padding: 24px 32px;
+    box-sizing: border-box;
+    background-image: url("/FONDO.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow-y: auto;
+  }
+  
+  .users-admin-panel {
+    max-width: 1120px;
+    margin: 32px auto 40px;
+    padding: 32px 40px 36px;
+    border-radius: 26px;
+    background: rgba(189, 142, 57, 0.48);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+  }
+  
+  /* Título */
+  .users-admin-header {
+    margin-bottom: 20px;
+  }
+  
+  .users-admin-title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #f8f4e9;
+    text-align: center;
+  }
+  
+  /* Buscador */
+  .users-admin-search-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 14px;
+  }
+  
+  .users-admin-search {
+    display: flex;
+    align-items: center;
+    width: 70%;
+    max-width: 540px;
+    background: rgba(254, 246, 225, 0.96);
+    border-radius: 999px;
+    padding-inline: 16px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+  }
+  
+  .users-admin-search .search-icon {
+    margin-right: 10px;
+    font-size: 0.9rem;
+    color: #4a3a1e;
+  }
+  
+  .users-admin-search input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 0.9rem;
+    padding: 10px 0;
+    outline: none;
+  }
+  
+  .users-admin-search .search-voice {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 0.95rem;
+    padding-left: 10px;
+    color: #4a3a1e;
+  }
+  
+  /* Filtros */
+  .users-admin-filters-row {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  
+  .users-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    background: rgba(248, 237, 250, 0.95);
+    font-size: 0.78rem;
+    cursor: pointer;
+  }
+  
+  .users-chip .chip-value {
+    font-weight: 600;
+  }
+  
+  .users-chip i {
+    font-size: 0.75rem;
+  }
+  
+  /* Grid de tarjetas */
+  .users-admin-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 28px;
+  }
+  
+  /* Tarjeta de usuario */
+  .user-card {
+    width: 210px;
+    border-radius: 14px;
+    padding: 12px 14px 16px;
+    background: rgba(248, 230, 165, 0.93);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    transition: transform 0.08s ease, box-shadow 0.08s ease;
+  }
+  
+  .user-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 26px rgba(0, 0, 0, 0.45);
+  }
+  
+  .user-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  
+  .user-card__name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #3a2a10;
+  }
+  
+  .user-card__menu {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #3a2a10;
+  }
+  
+  .user-card__avatar {
+    width: 78px;
+    height: 78px;
+    border-radius: 999px;
+    margin: 0 auto 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 30% 30%, #7a3b58, #3a1429);
+    color: #f8f4f0;
+    font-size: 2rem;
+  }
+  
+  .user-card__body {
+    text-align: center;
+  }
+  
+  .user-card__full-name {
+    margin: 0;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #2b1b0b;
+  }
+  
+  .user-card__role {
+    margin: 0;
+    font-size: 0.78rem;
+    color: #4c3414;
+  }
+  
+  .user-card__status-row {
+    margin-top: 8px;
+  }
+  
+  /* Estado */
+  .user-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+  }
+  
+  .user-status-pill--ok {
+    background: rgba(210, 244, 193, 0.97);
+    color: #234315;
+  }
+  
+  .user-status-pill--danger {
+    background: rgba(248, 204, 204, 0.97);
+    color: #5c1818;
+  }
+  
+  .user-status-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 999px;
+    background: currentColor;
+  }
+  
+  .user-status-text {
+    font-weight: 600;
+  }
+  
+  /* Footer */
+  .users-admin-footer {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .users-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 999px;
+    padding: 8px 18px;
+    font-size: 0.9rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+    background: transparent;
+    color: #1f1306;
+  }
+  
+  .users-btn--primary {
+    background: #f7d470;
+    border-color: rgba(0, 0, 0, 0.65);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+  }
+  
+  .users-btn--primary:hover {
+    background: #f3c752;
+  }
+  
+  /* Estado vacío */
+  .users-admin-empty {
+    text-align: center;
+    padding: 20px 0;
+    font-style: italic;
+    color: #f5e9d0;
+  }
+  
+  /* Responsivo */
+  @media (max-width: 768px) {
+    .users-admin-panel {
+      padding-inline: 18px;
+    }
+  
+    .users-admin-title {
+      font-size: 1.7rem;
+    }
+  }
+  
