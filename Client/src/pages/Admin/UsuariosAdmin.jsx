@@ -8,24 +8,24 @@ const MOCK_USERS = [
     name: "Kevin",
     fullName: "Kevin Steven",
     email: "kevin@booksync.com",
-    role: "ADMIN",
-    status: "Activo",
+    role: "administrador",
+    status: "activo",
   },
   {
     id: 2,
     name: "Juanita",
     fullName: "Juanita Valbuena",
     email: "juanita@booksync.com",
-    role: "USER",
-    status: "Bloqueado",
+    role: "usuario",
+    status: "bloqueado",
   },
   {
     id: 3,
     name: "Santiago",
     fullName: "Santiago Lancheros",
     email: "santiago@booksync.com",
-    role: "LIBRARIAN",
-    status: "Activo",
+    role: "bibliotecario",
+    status: "inactivo",
   },
 ];
 
@@ -106,7 +106,7 @@ function UsuariosAdmin (){
             {/* Filtros */}
             <div className="users-admin-filters-row">
 
-              <button type="button" className="users-chip" onClick={() => setRoleFilter((prev) => prev === "todos" ? "ADMIN" : "todos")}>
+              <button type="button" className="users-chip" onClick={() => setRoleFilter((prev) => prev === "todos" ? "administrador" : "todos")}>
                 <i className="fa-solid fa-filter" />
                 <span>Tipo</span>
                 <span className="chip-value">
@@ -115,7 +115,7 @@ function UsuariosAdmin (){
                 <i className="fa-solid fa-chevron-down"/>
               </button>
 
-              <button type="button" className="users-chip" onClick={() => setStatusFilter((prev) => prev === "todos" ? "Activo" : "todos")}>
+              <button type="button" className="users-chip" onClick={() => setStatusFilter((prev) => prev === "todos" ? "activo" : "todos")}>
                 <i className="fa-solid fa-chevron-down"/>
                 <span>Estado</span>
                 <span className="chip-value">
@@ -129,8 +129,8 @@ function UsuariosAdmin (){
 
             <div className="users-admin-grid">
               {filteredUsers.map((user) => {
-                const isActive = user.status === "Activo";
-                const roleLabel = user.role === "ADMIN" ? "Administrador" : user.role === "LIBRARIAN" ? "Bibliotecario" : "Usuario"
+                const isActive = user.status === "activo";
+                const roleLabel = user.role === "administrador" ? "Administrador" : user.role === "bibliotecario" ? "Bibliotecario" : "Usuario"
                 return  (
                   <article key={user.id} className="user-card" onClick={() => handleCardClick(user)}>
                     <header className="user-card__header">

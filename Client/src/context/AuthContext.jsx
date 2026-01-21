@@ -6,11 +6,11 @@ export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState({
         id: 1,
         name: "Kevin Steven",
-        role: "ADMIN",
+        role: "administrador",
     });
 
     const value = useMemo(() => {
-        const isAdmin = currentUser?.role === "ADMIN";
+        const isAdmin = currentUser?.role === "administrador";
 
         return {
             currentUser,
