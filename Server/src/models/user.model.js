@@ -13,7 +13,8 @@ cambiar estado
 
 
 class User {
-
+    
+    //CREAR USUARIO
     static async create({nombre, correo, password_hash}){
         const sql = `INSERT INTO usuario (nombre, correo, password_hash, tipo, estado) VALUES (?, ?, ?, 'usuario', 'activo')`;
 
@@ -21,6 +22,7 @@ class User {
         return result.insertId;
     }
 
+    //BUSCAR POR EMAIL
     static async findByEmail(correo){
         const sql = `SELECT id_usuario, nombre, correo, password_hash, tipo, estado FROM usuario WHERE correo = ?`
 
@@ -28,13 +30,15 @@ class User {
         return rows[0]
     }
 
+    //BUSCAR POR ID
     static async findById(idUsuario){
         const sql = `SELECT id_usuario, nombre, correo, password_hash, tipo, estado FROM usuario WHERE id_usuario= ?`
 
         const [rows] = await pool.query(sql, [idUsuario]);
         return rows[0];
     }
-
+    
+    // ACTUALIZAR USUARIO
     static async update (idUsuario, {nombre, correo}){
         const sql = `UPDATE usuario SET nombre = ?, correo = ? WHERE id_usuario = ?`;
 
@@ -42,8 +46,9 @@ class User {
         return result.affectedRows > 0
     }
 
+    //BORRAR / DESACTIVAR USUARIO
     static async delete(idUsuario){
-        const sql = `UPDATE usuario SET estado = 'Inactivo' WHERE id_usuario = ?`;
+        const sql = `UPDATE usuario SET estado = 'inactivo' WHERE id_usuario = ?`;
 
         const [result] = await pool.query(sql, [idUsuario]);
         return result.affectedRows > 0
