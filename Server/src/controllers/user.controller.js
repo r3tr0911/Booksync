@@ -1,5 +1,8 @@
 const User = require("../models/user.model");
 
+
+// CREAR userAll para obtener todos los usuarios 
+
 class UserController {
 
     static async getProfile(req, res){

@@ -1,4 +1,3 @@
-const pool = require ("../config/db")
 /*
 crar usuarios               x
 buscar usuarios por id      x
@@ -11,6 +10,7 @@ cambiar tipo
 cambiar estado 
 */
 
+const pool = require ("../config/db")
 
 class User {
     
