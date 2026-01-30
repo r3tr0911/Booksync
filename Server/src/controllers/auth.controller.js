@@ -88,7 +88,7 @@ class AuthController {
                 {
                     id: user.id_usuario,
                     correo: user.correo,
-                    tipo: user.tipo
+                    role: user.tipo
                 }, JWT_SECRET, {
                     expiresIn: "12h"
                 }
@@ -101,7 +101,7 @@ class AuthController {
                     id: user.id_usuario,
                     nombre: user.nombre,
                     correo: user.correo,
-                    tipo: user.tipo
+                    role: user.tipo
                 }
             })
 

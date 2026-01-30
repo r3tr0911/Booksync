@@ -12,20 +12,21 @@ class Libro {
     
     //CREAR LIBRO
     static async create({ 
-        titulo, 
-        autor, 
-        genero, 
-        anio_publicacion, 
-        cantidad_disponible, 
-        isbn
+        title, 
+        author, 
+        genre, 
+        publication_year, 
+        available_quantity, 
+        location,
+        isbn, 
     }){
         const sql = `
         INSERT INTO libro 
-        (titulo, autor, genero, anio_publicacion, cantidad_disponible, isbn, estado) 
-        VALUES (?,?,?,?,?,?, 'disponible')
+        (title, author, genre, publication_year, available_quantity, location, isbn, status) 
+        VALUES (?,?,?,?,?,?,?, 'disponible')
         `;
 
-        const [result] = await pool.query(sql, [titulo, autor, genero, anio_publicacion, cantidad_disponible, isbn])
+        const [result] = await pool.query(sql, [title, author, genre, publication_year, available_quantity, location, isbn])
         return result.insertId
     };
 
@@ -33,14 +34,15 @@ class Libro {
     static async findAll(){
         const sql = `SELECT 
         id_libro, 
-        titulo, 
-        autor, 
-        genero, 
-        anio_publicacion, 
-        cantidad_disponible, 
+        title, 
+        author, 
+        genre, 
+        publication_year, 
+        available_quantity,
+        location, 
         isbn, 
-        estado 
-        FROM libro WHERE estado != 'inactivo'
+        status 
+        FROM libro WHERE status != 'inactivo'
         `;
         
         
@@ -52,14 +54,15 @@ class Libro {
     static async findById(idLibro){
         const sql = `SELECT 
         id_libro, 
-        titulo, 
-        autor, 
-        genero, 
-        anio_publicacion, 
-        cantidad_disponible, 
-        isbn, 
-        estado 
-        FROM libro WHERE id_libro = ? AND estado != "inactivo"
+        title, 
+        author, 
+        genre, 
+        publication_year, 
+        available_quantity,
+        location,
+        isbn,
+        status  
+        FROM libro WHERE id_libro = ? AND status != "inactivo"
         `;
     
         const [rows] = await pool.query(sql, [idLibro]);
@@ -92,7 +95,7 @@ class Libro {
 
     //BORRAR / DESACTIVAR USUARIO
     static async delete(idLibro){
-        const sql = `UPDATE libro SET estado = 'inactivo' WHERE id_libro = ?`;
+        const sql = `UPDATE libro SET status = 'inactivo' WHERE id_libro = ?`;
     
         const [result] = await pool.query(sql, [idLibro]);
         return result.affectedRows > 0

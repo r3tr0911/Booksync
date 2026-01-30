@@ -4,33 +4,33 @@ import { useLogoutToast } from "../../hooks/useLogoutToast";
 
 
 const prestamos = [
-  {
-    id: 1,
-    titulo: "La metamorfosis",
-    autor: "Kafka",
-    estado: "vigente",
-    prestadoEl: "20/05/2025",
-    devolverAntesDe: "27/05/2025",
-    portada: "/Covers/metamorfosis.jpg",
-  },
-  {
-    id: 2,
-    titulo: "Tan poca vida",
-    autor: "Yanagihara",
-    estado: "atrasado",
-    prestadoEl: "20/05/2025",
-    devolverAntesDe: "27/05/2025",
-    portada: "/Covers/tan-poca-vida.jpg",
-  },
-  {
-    id: 3,
-    titulo: "Utopía",
-    autor: "Andre Htois",
-    estado: "proximo", 
-    prestadoEl: "20/05/2025",
-    devolverAntesDe: "27/05/2025",
-    portada: "/Covers/utopia.jpg",
-  },
+    {
+        id: 1,
+        titulo: "La metamorfosis",
+        autor: "Kafka",
+        estado: "vigente",
+        prestadoEl: "20/05/2025",
+        devolverAntesDe: "27/05/2025",
+        portada: "/Covers/metamorfosis.jpg",
+    },
+    {
+        id: 2,
+        titulo: "Tan poca vida",
+        autor: "Yanagihara",
+        estado: "atrasado",
+        prestadoEl: "20/05/2025",
+        devolverAntesDe: "27/05/2025",
+        portada: "/Covers/tan-poca-vida.jpg",
+    },
+    {
+        id: 3,
+        titulo: "Utopía",
+        autor: "Andre Htois",
+        estado: "proximo", 
+        prestadoEl: "20/05/2025",
+        devolverAntesDe: "27/05/2025",
+        portada: "/Covers/utopia.jpg",
+    },
 ];
 
 function PrestamosUsuarios() {

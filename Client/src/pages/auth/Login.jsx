@@ -1,23 +1,47 @@
+import Swal from "sweetalert2";
 import{useState} from "react";
 import{useNavigate} from "react-router-dom";    
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 
 
 function Login (){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPw, setShowPw] = useState(false);
+    const [error, setError] = useState(null)
 
     const navigate = useNavigate();
+    const { login } = useAuth();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setError(null);
 
-        const ok = email.trim().length > 5 && password.length >= 6;
-        if(ok) {
+        try {
+            await login({
+                correo: email,
+                password
+            });
+
             navigate("/Home");
-        } else {
-            alert("Verifique el correo y la contraseña");
+
+        } catch (err) {
+            Swal.fire({
+                text: "Correo o contraseña incorrectos",
+                icon: "error",
+                toast: true,              
+                position: "top",          
+                showConfirmButton: false,  
+                timer: 1500,               
+                timerProgressBar: true,    
+                background: "#fff",
+                iconColor: "#e74c3c",      
+                customClass: {
+                    popup: 'burbuja-mini',  
+                    icon: 'icono-pequeno'
+                }
+            });
         }
     };
 

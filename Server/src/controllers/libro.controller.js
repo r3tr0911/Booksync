@@ -13,15 +13,15 @@ class LibroController {
     //CREAMOS LIBROS
     static async createLibro(req, res){
         try {
-            const {titulo, autor, genero, anio_publicacion, cantidad_disponible, isbn} = req.body
+            const {title, author, genre, publication_year, available_quantity, location, isbn} = req.body
 
-            if(!titulo || !autor || !genero || !anio_publicacion || cantidad_disponible === undefined || !isbn){
+            if(!title || !author || !genre || !publication_year || !available_quantity === undefined || !location || !isbn){
                 return res.status(400).json({
                     message: "Todos los campos son requeridos"
                 })
             }
 
-            const libroId = await Libro.create({titulo, autor, genero, anio_publicacion, cantidad_disponible, isbn});
+            const libroId = await Libro.create({title, author, genre, publication_year, available_quantity, location, isbn});
             
             return res.status(201).json({
                 message: "Libro creado correctamente",
@@ -29,6 +29,13 @@ class LibroController {
             }) 
 
         } catch (error) {
+
+            if (error.code === "ER_DUP_ENTRY") {
+                return res.status(409).json({
+                    message: "Ya existe un libro con ese ISBN"
+                });
+            }
+
             console.error(error);
             return res.status(500).json({
                 message: "Error al crear libro "
@@ -79,30 +86,32 @@ class LibroController {
         try {
             const { id } = req.params;
             const {
-                titulo, 
-                autor, 
-                genero, 
-                anio_publicacion, 
-                cantidad_disponible, 
+                title, 
+                author, 
+                genre, 
+                publication_year, 
+                available_quantity, 
+                location,
                 isbn, 
-                estado
+                status
             } = req.body
 
             if (
-                !titulo && !autor && !genero && !anio_publicacion &&
-                cantidad_disponible === undefined && !isbn && estado === undefined
+                !title && !author && !genre && !publication_year &&
+                !available_quantity === undefined && !location && !isbn && !status === undefined
             ) {
                 return res.status(400).json({ message: "No hay campos para actualizar" });
             }
 
             const updated = await Libro.update(id, {
-                titulo, 
-                autor, 
-                genero, 
-                anio_publicacion, 
-                cantidad_disponible, 
+                title, 
+                author, 
+                genre, 
+                publication_year, 
+                available_quantity, 
+                location,
                 isbn, 
-                estado
+                status
             })
             
 

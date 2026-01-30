@@ -1,23 +1,46 @@
 import { createContext, useContext, useMemo, useState } from "react";
+import { loginRequest } from "../services/auth.service";
 
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
-    const [currentUser, setCurrentUser] = useState({
-        id: 1,
-        name: "Kevin Steven",
-        role: "administrador",
-    });
+
+    const [currentUser, setCurrentUser] = useState(null);
+    const [token, setToken] = useState(localStorage.getItem("token"));
+
+
+    const login = async (data) => {
+
+        const response = await loginRequest(data);
+
+        const {user, token} = response;
+
+        //guardamos token
+        localStorage.setItem("token", token);
+        setToken(token)
+        setCurrentUser(user)
+
+    }
+
+    const logout = () => {
+        localStorage.removeItem("token")
+        setToken(null)
+        setCurrentUser(null)
+    };
+
+
 
     const value = useMemo(() => {
-        const isAdmin = currentUser?.role === "administrador";
 
         return {
             currentUser,
-            isAdmin,
-            setCurrentUser,
+            token,
+            login,
+            logout,
+            isAuthenticated: !!token,
+            isAdmin: currentUser?.role === "administrador",
         };
-    }, [currentUser]);
+    }, [currentUser, token]);
 
     return (
         <AuthContext.Provider value={value}>
