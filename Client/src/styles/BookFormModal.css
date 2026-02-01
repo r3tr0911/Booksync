@@ -1,0 +1,107 @@
+/* Fondo oscuro */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(3px);
+    z-index: 100;
+}
+
+  /* Contenedor del modal */
+.modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 520px;
+    background: rgba(36, 20, 4, 0.75);
+    border-radius: 22px;
+    padding: 26px 28px 24px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 215, 120, 0.25);
+    z-index: 101;
+    animation: modalFadeIn 0.18s ease-out;
+}
+
+  /* Animación suave */
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -46%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+  /* Título */
+.modal-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #f7f1e7;
+    margin-bottom: 18px;
+}
+
+  /* Formulario */
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+  /* Grid de inputs */
+.modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+  /* Inputs */
+.modal-grid input {
+    background: rgba(248, 237, 210, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    padding: 10px 12px;
+    font-size: 0.85rem;
+    outline: none;
+    color: #2a1b08;
+}
+
+  /* Inputs full width */
+.modal-grid input:nth-child(1),
+.modal-grid input:nth-child(2),
+.modal-grid input:nth-child(3) {
+    grid-column: span 2;
+}
+
+  /* Focus */
+.modal-grid input:focus {
+    border-color: #f7d470;
+    box-shadow: 0 0 0 2px rgba(247, 212, 112, 0.35);
+}
+
+  /* Acciones */
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+  /* Responsive */
+@media (max-width: 600px) {
+    .modal-content {
+        max-width: 92%;
+        padding: 22px 20px;
+    }
+
+    .modal-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-grid input {
+        grid-column: span 1 !important;
+    }
+}

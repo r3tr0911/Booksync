@@ -5,7 +5,11 @@ const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
 
-    const [currentUser, setCurrentUser] = useState(null);
+    const [currentUser, setCurrentUser] = useState(() => {
+        const storedUser = localStorage.getItem("user");
+        return storedUser ? JSON.parse(storedUser) : null;
+    });
+
     const [token, setToken] = useState(localStorage.getItem("token"));
 
 
@@ -17,6 +21,8 @@ export function AuthProvider({ children }) {
 
         //guardamos token
         localStorage.setItem("token", token);
+        localStorage.setItem("user", JSON.stringify(user));
+        
         setToken(token)
         setCurrentUser(user)
 

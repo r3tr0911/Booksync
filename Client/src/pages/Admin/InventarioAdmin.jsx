@@ -2,6 +2,19 @@ import React, { useState, useMemo, useRef, useEffect } from "react";
 import Sidebar from "../../components/sidebar"
 import {useLogoutToast} from "../../hooks/useLogoutToast"
 import { getLibrosRequest, createLibro, updateLibro, deleteLibro } from "../../services/libro.service";
+import BookFormModal from "./BookFormModal";
+
+
+const initialFormState = {
+    isbn: "",
+    title: "",
+    author: "",
+    genre: "",
+    publication_year: "",
+    available_quantity: 0,
+    location: "",
+    status: "disponible"
+}
 
 
 function InventarioAdmin (){
@@ -74,6 +87,8 @@ function InventarioAdmin (){
 
     //ABRIMOS FORM
     const handleAddBook = () => {
+        setEditingBook(null)
+        setFormData(initialFormState)
         setShowForm(true)
     };
 
@@ -346,78 +361,20 @@ function InventarioAdmin (){
                         )}
 
                         {/* FORMULARIO */}
-                        {showForm && (
-                            <div className="modal-backdrop">
-                                <div className="modal">
-                                    <h2>{editingBook ? "Editar libro" : "Agregar libro"}</h2>
-
-                                    <input
-                                        placeholder="Título"
-                                        value={formData.title}
-                                        onChange={(e) =>
-                                            setFormData({ ...formData, title: e.target.value })
-                                        }
-                                    />
-
-                                    <input
-                                        placeholder="Autor"
-                                        value={formData.author}
-                                        onChange={(e) =>
-                                            setFormData({ ...formData, author: e.target.value })
-                                        }
-                                    />
-
-                                    <input
-                                        placeholder="ISBN"
-                                        value={formData.isbn}
-                                        onChange={(e) =>
-                                            setFormData({ ...formData, isbn: e.target.value })
-                                        }
-                                    />
-
-                                    <input
-                                        placeholder="Categoría"
-                                        value={formData.genre}
-                                        onChange={(e) =>
-                                            setFormData({ ...formData, genre: e.target.value })
-                                        }
-                                    />
-
-                                    <input
-                                        placeholder="Ubicación"
-                                        value={formData.location}
-                                        onChange={(e) =>
-                                            setFormData({ ...formData, location: e.target.value })
-                                        }
-                                    />
-
-                                    <input
-                                        type="number"
-                                        min={0}
-                                        placeholder="Stock"
-                                        value={formData.available_quantity}
-                                        onChange={(e) =>
-                                            setFormData({ ...formData, available_quantity: Number(e.target.value) })
-                                        }
-                                    />
-
-                                    <input
-                                        type="number"
-                                        min={0}
-                                        placeholder="año de publicacion"
-                                        value={formData.publication_year}
-                                        onChange={(e) =>
-                                            setFormData({ ...formData, publication_year: Number(e.target.value) })
-                                        }
-                                    />
-                                    
-                                    <div style={{ marginTop: "1rem" }}>
-                                        <button onClick={() => setShowForm(false)}>Cancelar</button>
-                                        <button onClick={handleSubmitBook}>Guardar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
+                        <BookFormModal
+                        open={showForm}
+                        onOpenChange={(open) => {
+                            setShowForm(open);
+                            if (!open) {
+                                setEditingBook(null);
+                                setFormData(initialFormState);
+                            }
+                        }}
+                        formData={formData}
+                        setFormData={setFormData}
+                        onSubmit={handleSubmitBook}
+                        isEditing={!!editingBook}
+                        />
 
                         {/* ===== FOOTER ===== */}
                         <footer className="inventory-admin-footer">
