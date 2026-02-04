@@ -33,7 +33,7 @@ class UserController {
     static async updateProfile(req, res){
         try {
             const userId = req.user.id;
-            const {nombre, correo} = req.body;
+            const {nombre, correo } = req.body;
 
             if(!nombre || !correo){
                 return res.status(400).json({

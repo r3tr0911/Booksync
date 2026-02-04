@@ -4,7 +4,7 @@
   height:100%;
   overflow-x: hidden;
   overflow-y: auto;
- }
+}
 
 
 
@@ -38,7 +38,6 @@
     object-fit:contain; 
   }
   
- 
   .register-page .login-card{
     width:min(520px, 96%);
     background:rgba(231,210,164,.86);

@@ -15,16 +15,17 @@ const pool = require ("../config/db")
 class User {
     
     //CREAR USUARIO
-    static async create({nombre, correo, password_hash}){
-        const sql = `INSERT INTO usuario (nombre, correo, password_hash, tipo, estado) VALUES (?, ?, ?, 'usuario', 'activo')`;
+    static async create({nombre, apellido, tipo_documento, numero_documento, fecha_nacimiento, correo, password_hash}){
+        const sql = `INSERT INTO usuario (nombre, apellido, tipo_documento, numero_documento, fecha_nacimiento, correo, password_hash, tipo, estado) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, 'usuario', 'activo')`;
 
-        const [result] = await pool.query(sql, [nombre, correo, password_hash])
+        const [result] = await pool.query(sql, [nombre, apellido, tipo_documento, numero_documento, fecha_nacimiento, correo, password_hash])
         return result.insertId;
     }
 
     //BUSCAR POR EMAIL
     static async findByEmail(correo){
-        const sql = `SELECT id_usuario, nombre, correo, password_hash, tipo, estado FROM usuario WHERE correo = ?`
+        const sql = `SELECT id_usuario, nombre, apellido, tipo_documento, numero_documento, fecha_nacimiento, correo, password_hash, tipo, estado FROM usuario WHERE correo = ?`
 
         const [rows] = await pool.query(sql, [correo]);
         return rows[0]
@@ -32,7 +33,7 @@ class User {
 
     //BUSCAR POR ID
     static async findById(idUsuario){
-        const sql = `SELECT id_usuario, nombre, correo, password_hash, tipo, estado FROM usuario WHERE id_usuario= ?`
+        const sql = `SELECT id_usuario, nombre, apellido, tipo_documento, numero_documento, fecha_nacimiento, correo, password_hash, tipo, estado FROM usuario WHERE id_usuario= ?`
 
         const [rows] = await pool.query(sql, [idUsuario]);
         return rows[0];
@@ -40,9 +41,9 @@ class User {
     
     // ACTUALIZAR USUARIO
     static async update (idUsuario, {nombre, correo}){
-        const sql = `UPDATE usuario SET nombre = ?, correo = ? WHERE id_usuario = ?`;
+        const sql = `UPDATE usuario SET nombre = ?, correo = ?, apellido = ?, tipo_documento = ?, numero_documento = ?, fecha_nacimiento = ? WHERE id_usuario = ?`;
 
-        const [result] = await pool.query(sql, [nombre, correo, idUsuario])
+        const [result] = await pool.query(sql, [nombre, correo, apellido, tipo_documento, numero_documento, fecha_nacimiento, idUsuario])
         return result.affectedRows > 0
     }
 

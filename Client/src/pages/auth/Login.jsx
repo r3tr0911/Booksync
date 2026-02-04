@@ -33,7 +33,7 @@ function Login (){
                 toast: true,              
                 position: "top",          
                 showConfirmButton: false,  
-                timer: 1500,               
+                timer: 2000,               
                 timerProgressBar: true,    
                 background: "#fff",
                 iconColor: "#e74c3c",      

@@ -14,9 +14,10 @@ class AuthController {
     //regitro
     static async register (req, res){
         try {
-            const {nombre, correo, password} = req.body;
+            //llamamos los datos del body 
+            const {nombre , apellido, tipo_documento, numero_documento, fecha_nacimiento, correo, password} = req.body; 
             //validaciones basicas 
-            if(!nombre || !correo || !password){
+            if(!nombre || !apellido || !tipo_documento || !numero_documento || !fecha_nacimiento || !correo || !password){
                 return res.status(400).json({
                     message: "Todos los campos son obligatorios"
                 });
@@ -31,9 +32,10 @@ class AuthController {
             //hashear contraseña
             const password_hash = await bcrypt.hash(password , 10)
 
-            //creamos nuestro ussuario
-            const userId = await User.create({nombre, correo, password_hash}) 
+            //creamos nuestro usuario
+            const userId = await User.create({nombre, apellido, tipo_documento, numero_documento, fecha_nacimiento, correo, password_hash}) 
             
+            //respuesta exitosa
             return res.status(201).json({
                 message: "Usuario creado exitosamente", userId
             })
@@ -50,6 +52,7 @@ class AuthController {
     //LOGIN
     static async login(req, res){
         try {
+            //obtenemos datos del body
             const {correo, password } = req.body
             
             //validaciones
@@ -94,6 +97,7 @@ class AuthController {
                 }
             )
 
+            //respuesta exitosa
             return res.status(200).json({
                 message: "Login existoso", 
                 token,

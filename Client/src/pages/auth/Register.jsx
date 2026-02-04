@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { registerRequest } from "../../services/auth.service";
+import Swal from "sweetalert2";
 
 
 
@@ -7,12 +9,12 @@ function Register() {
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
-    name: "",
-    lastname: "",
-    idnumber: "",
-    idtype: "cc",
-    birthdate: "",
-    email: "",
+    nombre: "",
+    apellido: "",
+    tipo_documento: "CC",
+    numero_documento: "",
+    fecha_nacimiento: "",
+    correo: "",
     password: "",
     passwordConfirmed: "",
   });
@@ -31,59 +33,182 @@ function Register() {
     setShowPassword((prev) => !prev);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const {
-      name,
-      lastname,
-      idnumber,
-      birthdate,
-      email,
+      nombre,
+      apellido,
+      tipo_documento,
+      numero_documento,
+      fecha_nacimiento,
+      correo,
       password,
       passwordConfirmed,
     } = form;
 
     // Validaciones básicas
     if (
-      !name ||
-      !lastname ||
-      !idnumber ||
-      !birthdate ||
-      !email ||
+      !nombre ||
+      !apellido ||
+      !tipo_documento ||
+      !numero_documento ||
+      !fecha_nacimiento ||
+      !correo ||
       !password ||
       !passwordConfirmed
     ) {
-      alert("Por favor completa todos los campos.");
+      Swal.fire({
+        text: "Por favor completa todos los campos",
+        icon: "error",
+        toast: true,
+        position: "top",
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+        background: "#fff",
+        iconColor: "#e74c3c",
+        customClass: {
+          popup: "burbuja-mini",
+          icon: "icono-pequeno",
+        },
+      });
       return;
     }
 
     if (password.length < 6) {
-      alert("La contraseña debe tener al menos 6 caracteres.");
+      Swal.fire({
+        text: "La contraseña debe tener al menos 6 caracteres",
+        icon: "error",
+        toast: true,
+        position: "top",
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+        background: "#fff",
+        iconColor: "#e74c3c",
+        customClass: {
+          popup: "burbuja-mini",
+          icon: "icono-pequeno",
+        },
+      });
       return;
     }
 
     if (password !== passwordConfirmed) {
-      alert("Las contraseñas no coinciden.");
+      Swal.fire({
+        text: "Las contraseñas no coinciden",
+        icon: "error",
+        toast: true,
+        position: "top",
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+        background: "#fff",
+        iconColor: "#e74c3c",
+        customClass: {
+          popup: "burbuja-mini",
+          icon: "icono-pequeno",
+        },
+      });
       return;
     }
 
-    if (!/^\d+$/.test(idnumber)) {
-      alert("El número de identificación debe contener solo dígitos.");
+    if (!/^\d+$/.test(numero_documento)) {
+      Swal.fire({
+        text: "El número de identificación debe contener solo dígitos.",
+        icon: "error",
+        toast: true,
+        position: "top",
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+        background: "#fff",
+        iconColor: "#e74c3c",
+        customClass: {
+          popup: "burbuja-mini",
+          icon: "icono-pequeno",
+        },
+      });
       return;
     }
 
-    const birthDate = new Date(birthdate);
+    const birthDate = new Date(fecha_nacimiento);
     const today = new Date();
     if (birthDate > today) {
-      alert("La fecha de nacimiento no puede ser futura.");
+      Swal.fire({
+        text: "La fecha de nacimiento no puede ser futura.",
+        icon: "error",
+        toast: true,
+        position: "top",
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+        background: "#fff",
+        iconColor: "#e74c3c",
+        customClass: {
+          popup: "burbuja-mini",
+          icon: "icono-pequeno",
+        },
+      });
       return;
     }
 
-    // conectar con el backend (fetch/axios a la API de registro)
-    alert("Registro exitoso. Ahora puedes iniciar sesión.");
-    navigate("/");
+    // conectar con el backend 
+    try {
+      const payload = {
+        nombre: form.nombre,
+        apellido: form.apellido,
+        tipo_documento: form.tipo_documento,
+        numero_documento: form.numero_documento,
+        fecha_nacimiento: form.fecha_nacimiento,
+        correo: form.correo,
+        password: form.password,
+      };
+
+      await registerRequest(payload);
+
+      Swal.fire({
+        text: "Registro exitoso. Ahora puedes iniciar sesión",
+        icon: "success",
+        toast: true,
+        position: "top",
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        background: "#fff",
+        iconColor: "#2ecc71",
+        customClass: {
+          popup: "burbuja-mini",
+          icon: "icono-pequeno",
+        },
+      });
+
+      setTimeout(() => {
+        navigate("/Home");
+      }, 2000);
+
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+        text: error.response?.data?.message || "Error al registrar el usuario",
+        icon: "error",
+        toast: true,
+        position: "top",
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+        background: "#fff",
+        iconColor: "#e74c3c",
+        customClass: {
+          popup: "burbuja-mini",
+          icon: "icono-pequeno",
+        },
+      });
+    }
   };
+
+
 
   return (
     <main className="login-wrap register-page">
@@ -107,6 +232,7 @@ function Register() {
           <form
             id="register-form"
             onSubmit={handleSubmit}
+            noValidate
             style={{ marginTop: 14 }}
           >
             <h2 id="reg-title" className="sr-only">
@@ -114,51 +240,48 @@ function Register() {
             </h2>
 
             <div className="form-row">
-              <label htmlFor="name">Nombres</label>
+              <label htmlFor="nombre">Nombres</label>
               <input
                 type="text"
-                id="name"
-                name="name"
+                id="nombre"
+                name="nombre"
                 placeholder="Escribe tus nombres"
-                value={form.name}
+                value={form.nombre}
                 onChange={handleChange}
-                required
               />
             </div>
 
             <div className="form-row">
-              <label htmlFor="lastname">Apellidos</label>
+              <label htmlFor="apellido">Apellidos</label>
               <input
                 type="text"
-                id="lastname"
-                name="lastname"
+                id="apellido"
+                name="apellido"
                 placeholder="Escribe tus apellidos"
-                value={form.lastname}
+                value={form.apellido}
                 onChange={handleChange}
-                required
               />
             </div>
 
             <div className="form-row id-section">
-              <label htmlFor="idnumber">Número de identificación</label>
+              <label htmlFor="numero_documento">Número de identificación</label>
               <div className="id-group">
                 <input
                   type="text"
-                  id="idnumber"
-                  name="idnumber"
+                  id="numero_documento"
+                  name="numero_documento"
                   placeholder="Escribe tu número de identificación"
-                  value={form.idnumber}
+                  value={form.numero_documento}
                   onChange={handleChange}
-                  required
                 />
 
                 <div className="id-type">
                   <label>
                     <input
                       type="radio"
-                      name="idtype"
-                      value="cc"
-                      checked={form.idtype === "cc"}
+                      name="tipo_documento"
+                      value="CC"
+                      checked={form.tipo_documento === "CC"}
                       onChange={handleChange}
                     />
                     {" "}C.C
@@ -166,9 +289,9 @@ function Register() {
                   <label>
                     <input
                       type="radio"
-                      name="idtype"
-                      value="ti"
-                      checked={form.idtype === "ti"}
+                      name="tipo_documento"
+                      value="TI"
+                      checked={form.tipo_documento === "TI"}
                       onChange={handleChange}
                     />
                     {" "}T.I
@@ -178,30 +301,28 @@ function Register() {
             </div>
 
             <div className="form-row">
-              <label htmlFor="birthdate">Fecha de nacimiento</label>
+              <label htmlFor="fecha_nacimiento">Fecha de nacimiento</label>
               <div className="field">
                 <input
                   type="date"
-                  id="birthdate"
-                  name="birthdate"
-                  value={form.birthdate}
+                  id="fecha_nacimiento"
+                  name="fecha_nacimiento"
+                  value={form.fecha_nacimiento}
                   onChange={handleChange}
-                  required
                 />
                 <i className="fa-regular fa-calendar" />
               </div>
             </div>
 
             <div className="form-row">
-              <label htmlFor="email">Correo</label>
+              <label htmlFor="correo">Correo</label>
               <input
                 type="email"
-                id="email"
-                name="email"
+                id="correo"
+                name="correo"
                 placeholder="ejemplo@ejemplo.com"
-                value={form.email}
+                value={form.correo}
                 onChange={handleChange}
-                required
               />
             </div>
 
@@ -216,7 +337,6 @@ function Register() {
                   value={form.password}
                   onChange={handleChange}
                   minLength={6}
-                  required
                 />
                 <button
                   type="button"
@@ -244,7 +364,6 @@ function Register() {
                   value={form.passwordConfirmed}
                   onChange={handleChange}
                   minLength={6}
-                  required
                 />
                 <button
                   type="button"
