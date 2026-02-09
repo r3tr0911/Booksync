@@ -40,11 +40,25 @@ class User {
     }
     
     // ACTUALIZAR USUARIO
-    static async update (idUsuario, {nombre, correo}){
-        const sql = `UPDATE usuario SET nombre = ?, correo = ?, apellido = ?, tipo_documento = ?, numero_documento = ?, fecha_nacimiento = ? WHERE id_usuario = ?`;
+    static async update (idUsuario, data){
+        const fields = [];
+        const values = [];
 
-        const [result] = await pool.query(sql, [nombre, correo, apellido, tipo_documento, numero_documento, fecha_nacimiento, idUsuario])
-        return result.affectedRows > 0
+        for (const key in data) {
+            fields.push(`${key} = ?`);
+            values.push(data[key]);
+        }
+
+        const sql = `
+            UPDATE usuario 
+            SET ${fields.join(", ")} 
+            WHERE id_usuario = ?
+        `;
+
+        values.push(idUsuario);
+
+        const [result] = await pool.query(sql, values);
+        return result.affectedRows > 0;
     }
 
     //BORRAR / DESACTIVAR USUARIO

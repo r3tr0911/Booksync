@@ -33,15 +33,32 @@ class UserController {
     static async updateProfile(req, res){
         try {
             const userId = req.user.id;
-            const {nombre, correo } = req.body;
+            const dataToUpdate = {};
 
-            if(!nombre || !correo){
+            const {
+            nombre,
+            apellido,
+            correo,
+            fecha_nacimiento,
+            tipo_documento,
+            numero_documento
+            } = req.body;
+
+            if (nombre) dataToUpdate.nombre = nombre;
+            if (apellido) dataToUpdate.apellido = apellido;
+            if (correo) dataToUpdate.correo = correo;
+            if (fecha_nacimiento) dataToUpdate.fecha_nacimiento = fecha_nacimiento;
+            if (tipo_documento) dataToUpdate.tipo_documento = tipo_documento;
+            if (numero_documento) dataToUpdate.numero_documento = numero_documento;
+
+            if (Object.keys(dataToUpdate).length === 0) {
                 return res.status(400).json({
-                    message: "Nombre y correo son obligatiorios"
-                })
+                    message: "No se enviaron datos para actualizar"
+                });
             }
 
-            const updated = await User.update(userId, {nombre, correo})
+
+            const updated = await User.update(userId, dataToUpdate)
 
             if(!updated){
                 res.status(404).json({
