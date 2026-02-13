@@ -1,4 +1,3 @@
-// src/pages/Account.jsx
 import { useState } from "react";
 import Sidebar from "../../components/sidebar"; 
 import {useLogoutToast} from "../../hooks/useLogoutToast";

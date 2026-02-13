@@ -1,13 +1,11 @@
-// MPV => crear usuarios x
-// iniciar sesion x
 //Mas adelante impelmentar refrestoken y logout etc.
 
 const User = require("../models/user.model");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken")
 
-//PASARLO A .env 
-const JWT_SECRET = "booksync_secret";
+const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN;
 
 
 class AuthController {
@@ -93,7 +91,7 @@ class AuthController {
                     correo: user.correo,
                     role: user.tipo
                 }, JWT_SECRET, {
-                    expiresIn: "12h"
+                    expiresIn: JWT_EXPIRES_IN
                 }
             )
 
@@ -108,6 +106,7 @@ class AuthController {
                     role: user.tipo
                 }
             })
+
 
         } catch (error) {
             console.error(error);
