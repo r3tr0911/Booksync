@@ -31,22 +31,43 @@ class Libro {
     };
 
     //Listar libros
-    static async findAll(){
-        const sql = `SELECT 
-        id_libro, 
-        title, 
-        author, 
-        genre, 
-        publication_year, 
-        available_quantity,
-        location, 
-        isbn, 
-        status 
-        FROM libro WHERE status != 'inactivo'
+    static async findAll(filters = {}){
+        let sql = `SELECT 
+            id_libro, 
+            title, 
+            author, 
+            genre, 
+            publication_year, 
+            available_quantity,
+            location, 
+            isbn, 
+            status 
+            FROM libro WHERE status != 'inactivo'
         `;
         
-        
-        const [rows] = await pool.query(sql)
+        const values = [];
+
+        if(filters.title){
+            sql += ` AND title LIKE ?`
+            values.push(`%${filters.title}%`);
+        }
+
+        if(filters.author){
+            sql += ` AND author LIKE ?`
+            values.push(`%${filters.author}%`);
+        }
+
+        if(filters.isbn){
+            sql += ` AND isbn = ?`
+            values.push(filters.isbn);
+        }
+
+        if(filters.genre){
+            sql += ` AND genre = ?`
+            values.push(filters.genre);
+        }
+
+        const [rows] = await pool.query(sql, values)
         return rows
     }
 

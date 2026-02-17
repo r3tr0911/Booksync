@@ -46,9 +46,18 @@ class LibroController {
     //LISTAMOS LIBROS
     static async getAllLibros(req, res) {
         try {
-            const libros = await Libro.findAll();
+                const filters = {
+                    title: req.query.title,
+                    author: req.query.author,
+                    isbn: req.query.isbn,
+                    genre: req.query.genre
+                };
+            const libros = await Libro.findAll(filters);
 
-            return res.json(libros);
+            return res.json({
+                total: libros.length,
+                libros
+            });
 
         } catch (error) {
             console.error(error);
