@@ -4,70 +4,56 @@ import Sidebar from "../../components/sidebar";
 import { useLogoutToast } from "../../hooks/useLogoutToast";
 
 
-
-const FEATURED_BOOKS = [
-  {
-    id: "metamorfosis",
-    title: "La metamorfosis",
-    author: "Franz Kafka",
-    cover: "/Covers/metamorfosis.jpg",
-  },
-  {
-    id: "utopia",
-    title: "Utopía",
-    author: "Andre Hiotis",
-    cover: "/Covers/utopia.jpg",
-  },
-  {
-    id: "tan-poca-vida",
-    title: "Tan poca vida",
-    author: "Hanya Yanagihara",
-    cover: "/Covers/tan-poca-vida.jpg",
-  },
-  {
-    id: "rayuela",
-    title: "Rayuela",
-    author: "Julio Cortázar",
-    cover: "/Covers/rayuela.jpg",
-  },
-];
-
-// Cambiar por fetch a la API.
-const CATALOG = FEATURED_BOOKS;
-
 function Home() {
   const navigate = useNavigate();
-
+  
   // ==== Estado búsqueda ====
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState([]);
+  const [libros, setLibros] = useState([]); 
   const [showResults, setShowResults] = useState(false);
-
+  
   // ==== Estado carrusel ====
   const [currentIndex, setCurrentIndex] = useState(0); 
   const trackRef = useRef(null);
+  
+  // ==== Hook de logout (toast global) ====
+  const { toast, openToast } = useLogoutToast();
 
-    // ==== Hook de logout (toast global) ====
-    const { toast, openToast } = useLogoutToast();
-
-
+  // ==== Función para obtener libros desde la API ====
+  const fetchLibros = async (search = "") => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(
+        `http://localhost:3000/api/libros?title=${search}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        }
+      );
+  
+      const data = await response.json();
+      setLibros(data.libros || [])
+      
+    } catch (error) {
+      console.error("Error al obtener libros:", error);
+    }
+  }
+  
   // ==== Lógica de búsqueda ====
   useEffect(() => {
-    const v = query.trim();
+    const delay = setTimeout(() => {
+      if(query.trim().length === 0 ){
+        setLibros([])
+        setShowResults(false);
+        return ;
+      }
 
-    if (!v.length) {
-      setResults([]);
-      setShowResults(false);
-      return;
-    }
+      fetchLibros(query);
+      setShowResults(true);
+    }, 400)
 
-    const qLower = v.toLowerCase();
-    const filtered = CATALOG.filter((b) =>
-      `${b.title} ${b.author}`.toLowerCase().includes(qLower)
-    );
-
-    setResults(filtered);
-    setShowResults(true);
+    return () => clearTimeout(delay);
   }, [query]);
 
   // ==== Scroll del carrusel cuando cambia el índice ====
@@ -85,13 +71,17 @@ function Home() {
   }, [currentIndex]);
 
   const handlePrev = () => {
+    if (libros.length === 0) return;
     setCurrentIndex((prev) =>
-      (prev - 1 + FEATURED_BOOKS.length) % FEATURED_BOOKS.length
+      (prev - 1 + libros.length) % libros.length
     );
   };
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % FEATURED_BOOKS.length);
+    if (libros.length === 0) return;
+    setCurrentIndex((prev) =>
+      (prev + 1) % libros.length
+    );
   };
 
   const handleDotClick = (index) => {
@@ -100,7 +90,7 @@ function Home() {
 
   const handleCardClick = (book) => {
     localStorage.setItem("selectedBook", JSON.stringify(book));
-    navigate(`/detalle/${book.id}`);
+    navigate(`/detalle/${book.id_libro}`);
   };
 
   
@@ -157,16 +147,16 @@ function Home() {
               </button>
 
               <div id="track" className="track" tabIndex="-1" ref={trackRef}>
-                {FEATURED_BOOKS.map((book, index) => (
+                {libros.map((book, index) => (
                   <article
-                    key={book.id}
+                    key={book.id_libro}
                     className={`card ${
                       index === currentIndex ? "active" : ""
                     }`}
                     onClick={() => handleCardClick(book)}
                   >
                     <figure className="cover">
-                      <img src={book.cover} alt={`Portada de ${book.title}`} />
+                      <img src={`http://localhost:3000${book.cover}`} alt={`Portada de ${book.title}`} />
                     </figure>
                     <div className="book-title">{book.title}</div>
                     <div className="book-author">({book.author})</div>
@@ -186,7 +176,7 @@ function Home() {
 
             {/* Dots */}
             <div id="dots" className="dots" aria-hidden="true">
-              {FEATURED_BOOKS.map((_, index) => (
+              {libros.map((_, index) => (
                 <button
                   key={index}
                   className={`dot cap ${
@@ -231,7 +221,7 @@ function Home() {
           </div>
 
           <div id="results" className="results-grid" aria-label="Resultados">
-            {results.length === 0 ? (
+            {libros.length === 0 ? (
               <p
                 style={{
                   gridColumn: "1 / -1",
@@ -244,16 +234,15 @@ function Home() {
                 No encontramos resultados para “{query.trim()}”.
               </p>
             ) : (
-              results.map((book) => (
+              libros.map((book) => (
                 <article
-                  key={book.id}
+                  key={book.id_libro}
                   className="result-card"
                   onClick={() => handleCardClick(book)}
                 >
                   <figure>
                     <img
-                      src={book.cover}
-                      alt={`Portada de ${book.title}`}
+                      src={`http://localhost:3000${book.cover}`} alt={`Portada de ${book.title}`}
                     />
                   </figure>
                   <div className="rc-meta">

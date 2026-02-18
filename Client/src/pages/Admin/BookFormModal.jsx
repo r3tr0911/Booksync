@@ -83,7 +83,15 @@ export default function BookFormModal({
                             onChange={(e) =>
                                 setFormData({ ...formData, publication_year: Number(e.target.value) })
                             }
-                        />            
+                        />         
+                        
+                        <input
+                            placeholder="URL de la portada (/uploads/libros/ejemplo.jpg)"
+                            value={formData.cover || ""}
+                            onChange={(e) =>
+                                setFormData({ ...formData, cover: e.target.value })
+                            }
+                        />   
                                     
                         </div>
 

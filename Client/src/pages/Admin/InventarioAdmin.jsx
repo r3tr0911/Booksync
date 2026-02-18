@@ -13,7 +13,8 @@ const initialFormState = {
     publication_year: "",
     available_quantity: 0,
     location: "",
-    status: "disponible"
+    status: "disponible",
+    cover: ""
 }
 
 
@@ -33,7 +34,8 @@ function InventarioAdmin (){
         publication_year: "",
         available_quantity: 0,
         location: "",
-        status: "disponible"
+        status: "disponible",
+        cover: ""
     })
 
     const {toast, openToast} = useLogoutToast();
@@ -43,7 +45,7 @@ function InventarioAdmin (){
     const fetchLibros = async () =>{
         try {
             const data = await getLibrosRequest();
-            setbooks(data);
+            setbooks(data.libros || []);
         } catch (error) {
             console.error("Error al obtener libros", error);
         } finally {
@@ -107,15 +109,7 @@ function InventarioAdmin (){
 
             setShowForm(false);
             setEditingBook(null)
-            setFormData({
-                title: "",
-                author: "",
-                genre: "",
-                publication_year: "",
-                available_quantity: "",
-                location: "",
-                isbn: ""
-            })
+            setFormData(initialFormState);
 
             fetchLibros();
 
@@ -140,7 +134,8 @@ function InventarioAdmin (){
             publication_year: book.publication_year,
             available_quantity: book.available_quantity,
             location: book.location,
-            status: book.status
+            status: book.status,
+            cover: book.cover || ""
         });
 
         setShowForm(true);
@@ -303,6 +298,7 @@ function InventarioAdmin (){
                                             <th className="col-checkbox">
                                                 <input type="checkbox" aria-label="Seleccionar todos" ref={selectAllRef} checked={allVisibleSelected} onChange={handleToggleAll} />
                                             </th>
+                                            <th>Portada</th>
                                             <th>Código / ISBN</th>
                                             <th>Título</th>
                                             <th>Autor</th>
@@ -319,6 +315,16 @@ function InventarioAdmin (){
                                                 <td className="col-checkbox">
                                                     <input type="checkbox" aria-label={`Seleccionar ${book.title}`} checked={selectedIds.includes(book.id_libro)} onChange={() => handleToggleRow(book.id_libro)}/>
                                                     
+                                                </td>
+                                                <td>
+                                                    {book.cover && (
+                                                        <img
+                                                        src={`http://localhost:3000${book.cover}`}
+                                                        alt={book.title}
+                                                        width="40"
+                                                        style={{ borderRadius: "4px" }}
+                                                        />
+                                                    )}
                                                 </td>
                                                 <td>{book.isbn}</td>
                                                 <td>{book.title}</td>
