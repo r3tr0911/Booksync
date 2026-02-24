@@ -18,7 +18,7 @@
 .home-page .hero{
   display:flex;
   justify-content:center;
-  margin-top:-50px;
+  margin-top:10px;
 }
 
 .home-page .buscar-logo{
@@ -36,18 +36,18 @@
 .home-page .search-wrap{
   display:flex;
   justify-content:center;
-  margin:-25px 8px;
+  margin:120px 8px 24px;
 }
 
 .home-page .search{
-  width:min(1080px, 92%);
+  width:min(800px, 95%);
   display:flex;
   align-items:center;
   gap:12px;
   background:rgba(255,255,255,.9);
   color:#222;
   border-radius:2500px;
-  padding:8px 16px;
+  padding:15px 16px;
   border:1px solid rgba(0,0,0,.2);
   box-shadow:0 14px 24px rgba(0,0,0,.25);
 }
@@ -136,7 +136,6 @@
 }
 
 .home-page .card.active{
-  /* transform:scale(1.05); */
   border-color: rgba(255,228,166,.55);
   box-shadow:0 18px 34px rgba(0,0,0,.45), 0 0 0 3px rgba(255,228,166,.12) inset;
 }
@@ -209,10 +208,48 @@
 /* Filtros */
 .home-page .filters{
   display:flex;
-  gap:12px;
+  gap:16px;
   align-items:center;
   flex-wrap:wrap;
-  margin:4px 6px 10px;
+  margin:10px 6px 16px;
+  padding:12px 16px;
+  background: rgba(0,0,0,.35);
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.home-page .filter-group{
+  display:flex;
+  align-items:center;
+  gap:10px; /* espacio entre texto y select */
+  color:#f3e9cb;
+  font-size:14px;
+}
+
+.home-page .filter-group label{
+  font-weight:600;
+  opacity:.9;
+}
+
+.home-page .clear-btn{
+  background: linear-gradient(135deg, #f7e4b6, #e2c27a);
+  color:#1b160e;
+  border:none;
+  padding:8px 16px;
+  border-radius:999px;
+  font-weight:700;
+  cursor:pointer;
+  transition: all .25s ease;
+  box-shadow:0 6px 16px rgba(0,0,0,.25);
+}
+
+.home-page .clear-btn:hover{
+  transform: translateY(-2px);
+  box-shadow:0 10px 20px rgba(0,0,0,.35);
+}
+
+.home-page .clear-btn:active{
+  transform: scale(.95);
 }
 
 .home-page .chip{
@@ -221,11 +258,18 @@
   gap:8px;
   background: rgba(255,255,255,.08);
   color:#f3e9cb;
-  border:1px solid rgba(255,255,255,.12);
-  padding:8px 12px;
+  border:1px solid rgba(255,255,255,.15);
+  padding:8px 14px;
   border-radius:999px;
   cursor:pointer;
-  box-shadow: inset 0 -6px 10px rgba(0,0,0,.25);
+  transition: all .25s ease;
+  font-size:14px;
+}
+
+.home-page .chip:hover{
+  background: rgba(255,228,166,.18);
+  border-color: rgba(255,228,166,.45);
+  transform: translateY(-2px);
 }
 
 .home-page .chip .chip-badge{
@@ -240,6 +284,26 @@
   display:inline-flex;
   gap:6px;
   align-items:center;
+}
+
+.home-page .filters select{
+  background: rgba(0,0,0,.45);
+  color:#f3e9cb;
+  border:1px solid rgba(255,255,255,.15);
+  padding:8px 12px;
+  border-radius:999px;
+  outline:none;
+  cursor:pointer;
+  transition: all .25s ease;
+}
+
+.home-page .filters select:hover{
+  border-color: rgba(255,228,166,.45);
+}
+
+.home-page .filters select:focus{
+  border-color: rgba(255,228,166,.7);
+  box-shadow: 0 0 0 2px rgba(255,228,166,.25);
 }
 
 .home-page .chip-group .chip-label{

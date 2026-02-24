@@ -38,13 +38,18 @@ class LibroController {
     //LISTAMOS LIBROS
     static async getAllLibros(req, res) {
         try {
-                const filters = {
-                    title: req.query.title,
-                    author: req.query.author,
-                    isbn: req.query.isbn,
-                    genre: req.query.genre
-                };
-            const libros = await Libro.findAll(filters);
+            const filters = {
+                title: req.query.title,
+                author: req.query.author,
+                isbn: req.query.isbn,
+                genre: req.query.genre
+            };
+
+            //ordenamiento
+            const sort = req.query.sort || "id_libro";
+            const order = req.query.order === "ASC" ? "ASC" : "DESC";
+                
+            const libros = await Libro.findAll(filters, sort, order);
 
             return res.json({
                 total: libros.length,
@@ -81,6 +86,25 @@ class LibroController {
             })
         }
     }
+
+    //OBTENER LIRBO POR GENERO
+    static async getGenres (req, res){
+        try {
+            const genres = await Libro.getGenres();
+            return res.json({
+                total: genres.length,
+                genres
+            });
+
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({
+                message: "Error al obtener los géneros"
+            });
+        }
+    }
+
+
 
     // Actualizar libros
     static async updateLibro(req, res){

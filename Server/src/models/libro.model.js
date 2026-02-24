@@ -34,7 +34,7 @@ class Libro {
     };
 
     //Listar libros
-    static async findAll(filters = {}){
+    static async findAll(filters = {}, sort = "id_libro", order = "DESC"){
         let sql = `SELECT 
             id_libro, 
             title, 
@@ -73,6 +73,17 @@ class Libro {
             values.push(filters.genre);
         }
 
+        //==ordenamiento ==
+        const allowedSortFields = ["id_libro", "title", "author", "publication_year"]
+
+        if(!allowedSortFields.includes(sort)){
+            sort = "id_libro"
+        }
+
+        order = order === "ASC" ? "ASC" : "DESC";
+
+        sql += `ORDER BY ${sort} ${order}`;
+
         const [rows] = await pool.query(sql, values)
         return rows
     }
@@ -98,7 +109,15 @@ class Libro {
         const [rows] = await pool.query(sql, [idLibro]);
         return rows[0];
         }
-    
+
+    //OBTENER LIRBO POR GENERO
+    static async getGenres (){
+        const sql = `SELECT DISTINCT genre FROM libro WHERE status != "inactivo" ORDER BY genre ASC`
+
+        const [rows] = await pool.query(sql)
+        return rows.map(row => row.genre)
+    }    
+
     // ACTUALIZAR USUARIO
     static async update (idLibro, data){
         const field = [];

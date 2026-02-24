@@ -12,6 +12,10 @@ function Home() {
   const [libros, setLibros] = useState([]); 
   const [recentBooks, setRecentBooks] = useState([]);
   const [showResults, setShowResults] = useState(false);
+  const [selectedGenre, setSelectedGenre] = useState("");
+  const [sortField, setSortField] = useState("title");
+  const [sortOrder, setSortOrder] = useState("ASC");
+  const [genres, setGenres] = useState([]);
   
   // ==== Estado carrusel ====
   const [currentIndex, setCurrentIndex] = useState(0); 
@@ -24,8 +28,16 @@ function Home() {
   const fetchLibros = async (search = "") => {
     try {
       const token = localStorage.getItem("token");
+
+      const params = new URLSearchParams({
+        title: search,
+        genre: selectedGenre,
+        sort: sortField,
+        order: sortOrder
+      });
+
       const response = await fetch(
-        `http://localhost:3000/api/libros?title=${search}`,
+        `http://localhost:3000/api/libros?${params.toString()}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -55,7 +67,7 @@ function Home() {
     }, 400)
 
     return () => clearTimeout(delay);
-  }, [query]);
+  }, [query, selectedGenre, sortField, sortOrder]);
 
 
 // === Obtener libros recientes para el carrusel ====
@@ -114,6 +126,34 @@ function Home() {
     }
   }, [currentIndex]);
 
+  // ==== ordenamiento de genero  ====
+  useEffect(() => {
+    const fetchGenres = async () => {
+      try {
+      const token = localStorage.getItem("token");
+
+      const response = await fetch(
+        "http://localhost:3000/api/libros/genres",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        }
+      );
+
+      const data = await response.json();
+      setGenres(data.genres || []);
+
+      } catch (error) {
+        console.error("Error al obtener géneros:", error);
+      }
+    }
+
+    fetchGenres();
+  }, [])
+
+
+
   const handlePrev = () => {
     if (recentBooks.length === 0) return;
     setCurrentIndex((prev) =>
@@ -145,15 +185,6 @@ function Home() {
 
       {/* ===== Contenido ===== */}
       <main className="content">
-        {/* Banner Buscar */}
-        <section className="hero" aria-hidden="true">
-          <img
-            className="buscar-logo"
-            src="/BUSCAR IMG.png"
-            alt="Buscar – en el catálogo de la biblioteca"
-          />
-        </section>
-
         {/* Barra de búsqueda */}
         <div className="search-wrap">
           <div className="search" role="search" aria-label="Buscar en catálogo">
@@ -167,9 +198,6 @@ function Home() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
-            <button className="suffix" type="button" aria-label="Buscar por voz">
-              <i className="fa-solid fa-microphone" />
-            </button>
           </div>
         </div>
 
@@ -243,25 +271,58 @@ function Home() {
           aria-live="polite"
         >
           <div className="filters">
-            <button className="chip" type="button">
-              <i className="fa-solid fa-filter" /> Categoría{" "}
-              <span className="chip-badge">Todas</span>
-            </button>
-            <button className="chip" type="button">
-              <i className="fa-regular fa-circle-check" /> Estado{" "}
-              <span className="chip-badge">Todos</span>
-            </button>
-            <div className="chip-group">
-              <span className="chip-label">
-                <i className="fa-solid fa-sliders" /> Ordenar
-              </span>
-              <button className="chip alt" type="button">
-                Autor
-              </button>
-              <button className="chip alt" type="button">
-                Título
-              </button>
+
+            <div className="filter-group">
+              <label>Categoría</label>
+              <select
+                value={selectedGenre}
+                onChange={(e) => setSelectedGenre(e.target.value)}
+              >
+                <option value="">Todas</option>
+                {genres.map((genre) => (
+                  <option key={genre} value={genre}>
+                    {genre}
+                  </option>
+                ))}
+              </select>
             </div>
+
+            <div className="filter-group">
+              <label>Ordenar por</label>
+              <select
+                value={sortField}
+                onChange={(e) => setSortField(e.target.value)}
+              >
+                <option value="title">Título</option>
+                <option value="author">Autor</option>
+                <option value="publication_year">Año</option>
+              </select>
+            </div>
+
+            <div className="filter-group">
+              <label>Orden</label>
+              <select
+                value={sortOrder}
+                onChange={(e) => setSortOrder(e.target.value)}
+              >
+                <option value="ASC">Ascendente</option>
+                <option value="DESC">Descendente</option>
+              </select>
+            </div>
+
+            <button
+              className="clear-btn"
+              onClick={() => {
+                setSelectedGenre("");
+                setSortField("title");
+                setSortOrder("ASC");
+
+                fetchLibros(query);
+              }}
+            >
+              Limpiar
+            </button>
+
           </div>
 
           <div id="results" className="results-grid" aria-label="Resultados">
