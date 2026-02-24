@@ -2,79 +2,64 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useLogoutToast } from "../../hooks/useLogoutToast";
 import Sidebar from "../../components/sidebar";
+import axios from "axios";
 
-const BOOKS = {
-  utopia: {
-    title: "Utopía",
-    author: "Andre Hiotis",
-    year: "2002",
-    genre: "Ensayo filosófico / Sociología",
-    editorial: "Fondo de Cultura Económica",
-    status: "Disponible",
-    description:
-      "Reflexión profunda sobre la búsqueda de sociedades ideales y los dilemas de la modernidad.",
-    cover: "utopia.jpg",
-    tags: ["Filosofía", "Ensayo", "Sociología"],
-  },
-  metamorfosis: {
-    title: "La metamorfosis",
-    author: "Franz Kafka",
-    year: "1915",
-    genre: "Ficción / Existencialismo",
-    editorial: "Verlag Kurt Wolff",
-    status: "Disponible",
-    description:
-      "Gregor Samsa se despierta convertido en un insecto gigante. Metáfora sobre la alienación moderna.",
-    cover: "metamorfosis.jpg",
-    tags: ["Ficción", "Clásico", "Existencialismo"],
-  },
-  "tan-poca-vida": {
-    title: "Tan poca vida",
-    author: "Hanya Yanagihara",
-    year: "2015",
-    genre: "Ficción",
-    editorial: "Doubleday",
-    status: "Disponible",
-    description:
-      "Una historia de amistad y dolor, de vidas entrelazadas y heridas que perduran.",
-    cover: "tan-poca-vida.jpg",
-    tags: ["Ficción", "Drama"],
-  },
-  rayuela: {
-    title: "Rayuela",
-    author: "Julio Cortázar",
-    year: "1963",
-    genre: "Ficción / Experimental",
-    editorial: "Editorial Sudamericana",
-    status: "Disponible",
-    description:
-      "Obra que desafía la estructura narrativa: múltiples recorridos para una misma historia.",
-    cover: "rayuela.jpg",
-    tags: ["Ficción", "Experimental", "Latinoamérica"],
-  },
-};
 
 function Detalle() {
   const navigate = useNavigate();
   const {toast, openToast} = useLogoutToast();
   const { id } = useParams();
+
+  const [book, setBook] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [showReserveToast, setShowReserveToast] = useState(false);
 
-  const bookId = (id || "utopia").toLowerCase();
-  const book = BOOKS[bookId];
 
-  // Si el id no existe, mandamos al Home
   useEffect(() => {
-    if (!book) {
-      navigate("/Home", { replace: true });
-    }
-  }, [book, navigate]);
+    const fetchBook = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const res = await axios.get(
+          `http://localhost:3000/api/libros/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }
+      );
+        setBook(res.data)
+      } catch (error) {
+        console.error("Error detalle:", error);
+        navigate("/Home");
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  if (!book) {
-    return null;
+    fetchBook();
+  }, [id, navigate])
+  
+  if(loading) {
+      return (
+        <div className="detalle-page">
+          <Sidebar onLogout={openToast} />
+          <main className="content">
+            <p>Cargando libro...</p>
+          </main>
+        </div>
+    );
   }
+  const statusMap = {
+    disponible: "Disponible",
+    prestado: "Prestado",
+    dañado: "Dañado",
+    inactivo: "Inactivo"
+  };
+  const formattedStatus = statusMap[book.status] || "Desconocido";
+  
+  if(!book) return null;
 
-  const coverPath = `/Covers/${book.cover}`;
+  const coverPath = `http://localhost:3000${book.cover}`;
 
   const handleReserve = () => {
     setShowReserveToast(true);
@@ -83,15 +68,6 @@ function Detalle() {
 
   const handleCloseToast = () => {
     setShowReserveToast(false);
-  };
-
-  const handleBackHome = () => {
-    navigate("/Home");
-  };
-
-  const handleLogout = () => {
-    // limpiar tokens.
-    navigate("/");
   };
 
   return (
@@ -114,21 +90,16 @@ function Detalle() {
                 alt={`Portada: ${book.title}`}
               />
 
-              <div className="rating" aria-label="Calificación del libro">
-                <i className="fa-solid fa-star" />
-                <i className="fa-solid fa-star" />
-                <i className="fa-solid fa-star" />
-                <i className="fa-solid fa-star" />
-                <i className="fa-solid fa-star" />
-              </div>
-
               <div className="buttons">
                 <button
                   className="btn reserve"
                   type="button"
                   onClick={handleReserve}
+                  disabled={book.available_quantity <= 0}
                 >
-                  Reservar
+                  {book.available_quantity > 0
+                    ? "Reservar"
+                    : "No disponible"}
                 </button>
                 <button className="btn fav" type="button">
                   Favorito
@@ -148,7 +119,8 @@ function Detalle() {
                   <strong>Autor:</strong> <span>{book.author}</span>
                 </p>
                 <p>
-                  <strong>Año de publicación:</strong> <span>{book.year}</span>
+                  <strong>Año:</strong>{" "}
+                  <span>{book.publication_year}</span>
                 </p>
                 <p>
                   <strong>Género:</strong> <span>{book.genre}</span>
@@ -157,21 +129,19 @@ function Detalle() {
                   <strong>Editorial:</strong> <span>{book.editorial}</span>
                 </p>
                 <p>
-                  <strong>Estado:</strong> <span>{book.status}</span>
+                  <strong>Estado:</strong>{" "}
+                  <span>
+                    {formattedStatus}
+                  </span>
                 </p>
               </div>
 
-              <div className="description">
-                <p>{book.description}</p>
-              </div>
+              {book.description && (
+                <div className="description">
+                  <p>{book.description }</p>
+                </div>
+              )}
 
-              <div className="tags">
-                {book.tags?.map((tag) => (
-                  <span key={tag} className="tag">
-                    {tag}
-                  </span>
-                ))}
-              </div>
             </div>
           </div>
         </section>

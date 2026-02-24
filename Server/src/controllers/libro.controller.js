@@ -5,15 +5,15 @@ class LibroController {
     //CREAMOS LIBROS
     static async createLibro(req, res){
         try {
-            const {title, author, genre, publication_year, available_quantity, location, isbn, cover} = req.body
+            const {title, author, genre, publication_year, available_quantity, location, isbn, cover, editorial, description} = req.body
 
-            if(!title || !author || !genre || !publication_year || available_quantity === undefined || !location || !isbn){
+            if(!title || !author || !genre || !publication_year || available_quantity === undefined || !location || !isbn || !cover || !editorial || !description){
                 return res.status(400).json({
                     message: "Todos los campos son requeridos"
                 })
             }
 
-            const libroId = await Libro.create({title, author, genre, publication_year, available_quantity, location, isbn, cover});
+            const libroId = await Libro.create({title, author, genre, publication_year, available_quantity, location, isbn, cover, editorial, description});
             
             return res.status(201).json({
                 message: "Libro creado correctamente",
@@ -95,11 +95,13 @@ class LibroController {
                 location,
                 isbn, 
                 status,
-                cover
+                cover,
+                editorial,
+                description
             } = req.body
 
             if (
-                title === undefined && author === undefined && genre === undefined && publication_year === undefined && available_quantity === undefined && location === undefined && isbn === undefined && status === undefined && cover === undefined
+                title === undefined && author === undefined && genre === undefined && publication_year === undefined && available_quantity === undefined && location === undefined && isbn === undefined && status === undefined && cover === undefined && editorial === undefined && description === undefined
             ) {
                 return res.status(400).json({ message: "No hay campos para actualizar" });
             }
@@ -113,7 +115,9 @@ class LibroController {
                 location,
                 isbn, 
                 status,
-                cover
+                cover,
+                editorial,
+                description
             })
             
 

@@ -20,14 +20,16 @@ class Libro {
         location,
         isbn,
         cover,
+        editorial,
+        description
     }){
         const sql = `
         INSERT INTO libro 
-        (title, author, genre, publication_year, available_quantity, location, isbn, status, cover) 
-        VALUES (?,?,?,?,?,?,?, 'disponible', ?)
+        (title, author, genre, publication_year, available_quantity, location, isbn, status, cover, editorial, description) 
+        VALUES (?,?,?,?,?,?,?,'disponible',?,?,?)
         `;
 
-        const [result] = await pool.query(sql, [title, author, genre, publication_year, available_quantity, location, isbn, cover]);
+        const [result] = await pool.query(sql, [title, author, genre, publication_year, available_quantity, location, isbn, cover, editorial, description]);
         return result.insertId
     };
 
@@ -43,7 +45,9 @@ class Libro {
             location, 
             isbn, 
             status,
-            cover
+            cover,
+            editorial,
+            description
             FROM libro WHERE status != 'inactivo'
         `;
         
@@ -85,7 +89,9 @@ class Libro {
         location,
         isbn,
         status,
-        cover
+        cover,
+        editorial,
+        description
         FROM libro WHERE id_libro = ? AND status != "inactivo"
         `;
     

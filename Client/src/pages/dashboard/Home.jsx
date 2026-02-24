@@ -10,6 +10,7 @@ function Home() {
   // ==== Estado búsqueda ====
   const [query, setQuery] = useState("");
   const [libros, setLibros] = useState([]); 
+  const [recentBooks, setRecentBooks] = useState([]);
   const [showResults, setShowResults] = useState(false);
   
   // ==== Estado carrusel ====
@@ -56,6 +57,49 @@ function Home() {
     return () => clearTimeout(delay);
   }, [query]);
 
+
+// === Obtener libros recientes para el carrusel ====
+  useEffect(() => {
+    const fetchRecentBooks = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await fetch(
+        "http://localhost:3000/api/libros",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        }
+      );
+
+      const data = await response.json();
+      const sorted = (data.libros || []).sort((a, b) => b.id_libro - a.id_libro).slice(0, 8);
+
+      setRecentBooks(sorted);
+      setCurrentIndex(0);
+      } catch (error) {
+        console.error("Error al obtener libros recientes:", error);
+      }
+    }
+    fetchRecentBooks();
+  }, []);
+
+
+  /// ==== Auto-rotación del carrusel ==== DISEÑO
+  useEffect(() => {
+  if (recentBooks.length === 0) return;
+
+  const interval = setInterval(() => {
+    setCurrentIndex((prev) =>
+      (prev + 1) % recentBooks.length
+    );
+  }, 4000); // 4 segundos
+
+  return () => clearInterval(interval);
+}, [recentBooks]);
+
+
+
   // ==== Scroll del carrusel cuando cambia el índice ====
   useEffect(() => {
     const track = trackRef.current;
@@ -71,16 +115,16 @@ function Home() {
   }, [currentIndex]);
 
   const handlePrev = () => {
-    if (libros.length === 0) return;
+    if (recentBooks.length === 0) return;
     setCurrentIndex((prev) =>
-      (prev - 1 + libros.length) % libros.length
+      (prev - 1 + recentBooks.length) % recentBooks.length
     );
   };
 
   const handleNext = () => {
-    if (libros.length === 0) return;
+    if (recentBooks.length === 0) return;
     setCurrentIndex((prev) =>
-      (prev + 1) % libros.length
+      (prev + 1) % recentBooks.length
     );
   };
 
@@ -130,7 +174,7 @@ function Home() {
         </div>
 
         {/* ===== Destacados (carrusel) ===== */}
-        {!showResults && (
+        {!showResults && recentBooks.length > 0 && (
           <section
             id="spotlight"
             className="featured"
@@ -147,7 +191,7 @@ function Home() {
               </button>
 
               <div id="track" className="track" tabIndex="-1" ref={trackRef}>
-                {libros.map((book, index) => (
+                {recentBooks.map((book, index) => (
                   <article
                     key={book.id_libro}
                     className={`card ${
@@ -176,7 +220,7 @@ function Home() {
 
             {/* Dots */}
             <div id="dots" className="dots" aria-hidden="true">
-              {libros.map((_, index) => (
+              {recentBooks.map((_, index) => (
                 <button
                   key={index}
                   className={`dot cap ${
@@ -256,7 +300,6 @@ function Home() {
         </section>
 
         {/* ===== Toast: Cerrar sesión ===== */}
-        {/* Toast de logout reutilizable */}
         {toast}
       </main>
     </div>

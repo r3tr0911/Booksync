@@ -41,6 +41,25 @@ export default function BookFormModal({
                         />
 
                         <input
+                            placeholder="descripción"
+                            value={formData.description}
+                            onChange={(e) =>
+                                setFormData({ ...formData, description: e.target.value })
+                            }
+                            required
+                        />
+                        
+                        <input
+                            placeholder="Editorial"
+                            value={formData.editorial}
+                            onChange={(e) =>
+                                setFormData({ ...formData, editorial: e.target.value })
+                            }
+                            required
+                        />
+
+
+                        <input
                             placeholder="ISBN"
                             value={formData.isbn}
                             onChange={(e) =>
