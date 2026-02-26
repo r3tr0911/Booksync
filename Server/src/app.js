@@ -4,6 +4,8 @@ const cors = require("cors")
 const authRoutes = require('./routes/auth.routes')
 const userRoutes = require('./routes/user.route')
 const libroRoutes = require('./routes/libro.routes')
+const favoriteRoutes = require('./routes/favorite.routes')
+
 
 const app = express();
 
@@ -16,8 +18,8 @@ app.use(cors({
 
 
 app.use(express.json());
-app.use("/uploads", express.static("uploads"));
 
+app.use("/uploads", express.static("uploads"));
 
 app.get("/", function(req, res){
     res.send("Hello, World!");
@@ -29,7 +31,7 @@ app.use("/api/users", userRoutes);
 
 app.use("/api/libros", libroRoutes);
 
-
+app.use("/api/favorite", favoriteRoutes );
 
 
 
