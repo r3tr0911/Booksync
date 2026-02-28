@@ -14,11 +14,11 @@ class FavoritoController {
                 })
             }
 
-            const Favorite = await Favorito.addFavorite(idUsuario, idLibro);
+            const favorite = await Favorito.addFavorite(idUsuario, idLibro);
 
             return res.status(201).json({
                 message: "Agregado a favoritos",
-                Favorite
+                favorite
             })
             
         } catch (error) {

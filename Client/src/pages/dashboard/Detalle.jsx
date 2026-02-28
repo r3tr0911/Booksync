@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useLogoutToast } from "../../hooks/useLogoutToast";
+import { isFavorite, addFavorite, deleteFavorite } from "../../services/favorito.service";
 import Sidebar from "../../components/sidebar";
 import axios from "axios";
 
@@ -13,6 +14,11 @@ function Detalle() {
   const [book, setBook] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showReserveToast, setShowReserveToast] = useState(false);
+
+  const [isFav, setIsFav] = useState(false);
+  const [favLoading, setFavLoading] = useState(false);
+  const [showFavToast, setShowFavToast] = useState(false);
+  const [favToastMsg, setFavToastMsg] = useState("");
 
 
   useEffect(() => {
@@ -27,7 +33,11 @@ function Detalle() {
             }
           }
       );
-        setBook(res.data)
+      setBook(res.data)
+
+      const favRes = await isFavorite(id)
+      setIsFav(Boolean(favRes.isFav))
+
       } catch (error) {
         console.error("Error detalle:", error);
         navigate("/Home");
@@ -49,26 +59,58 @@ function Detalle() {
         </div>
     );
   }
+
   const statusMap = {
     disponible: "Disponible",
     prestado: "Prestado",
     dañado: "Dañado",
     inactivo: "Inactivo"
   };
+
   const formattedStatus = statusMap[book.status] || "Desconocido";
   
   if(!book) return null;
 
   const coverPath = `http://localhost:3000${book.cover}`;
 
+
   const handleReserve = () => {
     setShowReserveToast(true);
     setTimeout(() => setShowReserveToast(false), 3000);
   };
 
+  const handleFavorite = async () => {
+    try {
+      setFavLoading(true)
+
+      if(isFav){
+        const res = await deleteFavorite(id);
+        setIsFav(false);
+        setFavToastMsg(res.message || "Eliminado de favoritos");
+      } else {
+        const res = await addFavorite(id);
+        setIsFav(true);
+        setFavToastMsg(res.message || "Agregado a favoritos");
+      }
+
+      setShowFavToast(true);
+      setTimeout(() => setShowFavToast(false), 3000);
+  
+    } catch (error) {
+      setFavToastMsg(error?.response?.data?.message || "Error con favoritos");
+      setShowFavToast(true);
+      setTimeout(() => setShowFavToast(false), 3000);
+    } finally {
+      setFavLoading(false);
+    }
+  }
+
+
   const handleCloseToast = () => {
     setShowReserveToast(false);
   };
+
+
 
   return (
     <div className="detalle-page">
@@ -91,6 +133,7 @@ function Detalle() {
               />
 
               <div className="buttons">
+                
                 <button
                   className="btn reserve"
                   type="button"
@@ -101,9 +144,11 @@ function Detalle() {
                     ? "Reservar"
                     : "No disponible"}
                 </button>
-                <button className="btn fav" type="button">
-                  Favorito
+
+                <button className="btn fav" type="button" onClick={handleFavorite} disabled={favLoading}>
+                  {isFav? "Quitar" : "Favorito"}
                 </button>
+
                 <button className="btn share" type="button">
                   Compartir
                 </button>
@@ -154,14 +199,33 @@ function Detalle() {
         >
           <div className="toast-content">
             <i className="fa-solid fa-circle-check" />
+
             <div>
               <p className="toast-title">Reservado</p>
               <p className="toast-msg">Se ha reservado exitosamente</p>
             </div>
+
           </div>
+
           <button type="button" onClick={handleCloseToast}>
             <i className="fa-solid fa-xmark" />
           </button>
+
+        </div>
+
+        <div className={"reserve-toast" + (showFavToast ? "" : " hidden")} role="status" aria-live="polite">
+          <div className="toast-content">
+            <i className="fa-solid fa-circle-check" />
+            <div>
+              <p className="toast-title">Favoritos</p>
+              <p className="toast-msg">{favToastMsg}</p>
+            </div>
+          </div>
+
+          <button type="button" onClick={() => setShowFavToast(false)}>
+            <i className="fa-solid fa-xmark" />
+          </button>
+          
         </div>
       </main>
       {toast}

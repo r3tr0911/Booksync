@@ -13,7 +13,7 @@ class Favorito {
     }
 
     //BORRAR FAVORITOS
-    static async deleteFavorite(idUsuario ,idLibro){
+    static async deleteFavorite(idUsuario, idLibro){
         const sql = `DELETE FROM favorito WHERE id_usuario = ? AND id_libro = ?`;
         const [result] = await pool.query(sql, [idUsuario, idLibro]);
 

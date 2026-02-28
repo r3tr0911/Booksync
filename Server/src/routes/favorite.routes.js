@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/", verifyToken, FavoritoController.getFavorites)
 
-router.get("/ids", verifyToken, FavoritoController.getFavorites)
+router.get("/ids", verifyToken, FavoritoController.getFavoritesId)
 
 router.get("/:idLibro", verifyToken, FavoritoController.isFavorite)
 
