@@ -5,6 +5,7 @@ const authRoutes = require('./routes/auth.routes')
 const userRoutes = require('./routes/user.route')
 const libroRoutes = require('./routes/libro.routes')
 const favoriteRoutes = require('./routes/favorite.routes')
+const reservaRoutes = require('./routes/reserva.routes')
 
 
 const app = express();
@@ -32,6 +33,9 @@ app.use("/api/users", userRoutes);
 app.use("/api/libros", libroRoutes);
 
 app.use("/api/favorite", favoriteRoutes );
+
+app.use("/api/reservas", reservaRoutes );
+
 
 
 
